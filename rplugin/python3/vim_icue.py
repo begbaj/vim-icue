@@ -1,9 +1,11 @@
 import neovim
 import cuesdk
+import logging
 
 @neovim.plugin
 class VimICUE(object):
     def __init__(self, vim):
+        logging.basicConfig(level=logging.DEBUG)
         self.vim = vim
 
     @neovim.function('DoItPython')
