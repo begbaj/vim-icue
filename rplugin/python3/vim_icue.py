@@ -32,11 +32,13 @@ class VimICUE(object):
         self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
+    @pynvim.command("VimICUEInsertModeOn")
     def insert_mode_on(self):
         self.vim.out_write("Insert keyboard layout enabled\n")
         for led in self.leds:
             led = (1, 1, 1)
 
+    @pynvim.command("VimICUEInsertModeOff")
     def insert_mode_off(self):
         pass
 
