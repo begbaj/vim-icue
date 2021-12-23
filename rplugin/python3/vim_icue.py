@@ -21,6 +21,13 @@ class VimICUE(object):
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
         self.vim.call("echomsg 'vim-icue is ready!'")
 
+    @neovim.plugin("VimICUE")
+    def vimicue(self):
+        print("prova 1")
+        self.vim.call("echomsg 'prova 2'")
+        self.vim.command("echomsg 'prova 3'")
+
+
     def get_available_leds(self):
         leds = list()
         device_count = self.cue.get_device_count()
