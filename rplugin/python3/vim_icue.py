@@ -22,7 +22,7 @@ class VimICUE(object):
         self.vim.out_write("vim-icue is ready!\n")
 
     @neovim.function("VimICUE")
-    def vimicue(self):
+    def vimicue(self, args):
         print("prova 1\n")
         self.vim.out_write("prova 2\n")
 
