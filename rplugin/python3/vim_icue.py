@@ -12,7 +12,7 @@ class VimICUE(object):
         self.connected = self.cue.connect()
         if not self.connected:
             err = self.cue.get_last_error()
-            print("Handshake failed: %s" % err)
+            logging.debug(f"Handshake failed: {err}")
             return
 
         self.leds = self.get_available_leds()
@@ -23,7 +23,6 @@ class VimICUE(object):
     def get_available_leds(self):
         leds = list()
         device_count = self.cue.get_device_count()
-
         for device_index in range(device_count):
             led_positions = self.cue.get_led_positions_by_device_index(device_index)
             leds.append(led_positions)
