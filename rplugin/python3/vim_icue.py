@@ -5,20 +5,21 @@ import logging
 @neovim.plugin
 class VimICUE(object):
     def __init__(self, vim:neovim.Nvim):
-        logging.basicConfig(level=logging.DEBUG)
+        #logging.basicConfig(level=logging.DEBUG)
         self.vim = vim
-
+        self.vim.command("echomsg vim-icue is initializing...")
         self.cue = CueSdk()
         self.connected = self.cue.connect()
         if not self.connected:
             err = self.cue.get_last_error()
-            logging.debug(f"Handshake failed: {err}")
+            self.vim.command(f"echomsg Handshake failed: {err}")
             return
 
         self.leds = self.get_available_leds()
 
         self.insert_mode_on = self.vim.subscribe("InsertEnter")
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
+        self.vim.command("echomsg vim-icue is ready!")
 
     def get_available_leds(self):
         leds = list()
