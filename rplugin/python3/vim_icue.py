@@ -2,7 +2,7 @@ import neovim
 import cuesdk
 
 @neovim.plugin
-class Main(object):
+class VimICUE(object):
     def __init__(self, vim):
         self.vim = vim
 
