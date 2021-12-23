@@ -21,12 +21,6 @@ class VimICUE(object):
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
         self.vim.out_write("vim-icue is ready!\n")
 
-    @neovim.function("VimICUE")
-    def vimicue(self, args):
-        print("prova 1\n")
-        self.vim.out_write("prova 2\n")
-
-
     def get_available_leds(self):
         leds = list()
         device_count = self.cue.get_device_count()
@@ -36,6 +30,7 @@ class VimICUE(object):
         return leds
 
     def insert_mode_on(self):
+        self.vim.out_write("Insert keyboard layout enabled\n")
         for led in self.leds:
             led = (1, 1, 1)
 
