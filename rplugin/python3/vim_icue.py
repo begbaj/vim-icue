@@ -10,7 +10,7 @@ class VimICUE(object):
 
     @neovim.function('DoItPython', sync=False)
     def get_mode(self, args):
-       mode = self.vim.command('mode')
+       mode = self.vim.call('mode')
        self.vim.current.line = mode
 
 
