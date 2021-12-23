@@ -7,25 +7,24 @@ class VimICUE(object):
     def __init__(self, vim: neovim.Nvim):
         #logging.basicConfig(level=logging.DEBUG)
         self.vim = vim
-        self.vim.call("echomsg", "vim-icue is initializing...")
+        self.vim.out_write("vim-icue is initializing...")
         self.cue = CueSdk()
         self.connected = self.cue.connect()
         if not self.connected:
             err = self.cue.get_last_error()
-            self.vim.call("echomsg", f"Handshake failed: {err}")
+            self.vim.out_write(f"Handshake failed: {err}")
             return
 
         self.leds = self.get_available_leds()
 
         self.insert_mode_on = self.vim.subscribe("InsertEnter")
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
-        self.vim.call("echomsg", "vim-icue is ready!")
+        self.vim.out_write("vim-icue is ready!")
 
     @neovim.function("VimICUE")
     def vimicue(self):
         print("prova 1")
-        self.vim.call("echomsg", "prova 2")
-        self.vim.command("echomsg 'prova 3'")
+        self.vim.out_write("prova 2")
 
 
     def get_available_leds(self):
