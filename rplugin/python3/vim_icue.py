@@ -18,10 +18,10 @@ class VimICUE(object):
         self.vim.command('au InsertEnter * VimICUEInsertModeOn')
         self.vim.command('au InsertLeave * VimICUEInsertModeOff')
         self.vim.out_write("vim-icue is ready!\n")
-        self.leds = self.get_available_leds()
+        self.colors = self.get_available_colors()
 
     @pynvim.command("VimICUELedsCount")
-    def get_available_leds(self):
+    def get_available_colors(self):
         leds = list()
         device_count = self.cue.get_device_count()
         for device_index in range(device_count):
@@ -33,8 +33,9 @@ class VimICUE(object):
     @pynvim.command("VimICUEInsertModeOn")
     def insert_mode_on(self):
         self.vim.out_write("Insert keyboard layout enabled\n")
-        for led in self.leds:
-            led = (1, 1, 1)
+        for leds in self.colors:
+            for led in leds:
+                led = (1, 1, 1)
 
     @pynvim.command("VimICUEInsertModeOff")
     def insert_mode_off(self):
