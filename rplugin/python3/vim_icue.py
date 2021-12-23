@@ -1,10 +1,10 @@
-import pynvim
+import neovim
 
-@pynvim.plugin
-class TestPlugin(object):
-    def _init__(self, nvim):
-        self.nvim = nvim
+@neovim.plugin
+class Main(object):
+    def __init__(self, vim):
+        self.vim = vim
 
-    @pynvim.function("TestFunction")
-    def testFunction(self, args):
-        self.nvim.current.line = "Hello from your plugin!"
+    @neovim.function('DoItPython')
+    def doItPython(self, args):
+        self.vim.command('echo "hello from DoItPython"')
