@@ -15,12 +15,10 @@ class VimICUE(object):
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-
-        self.leds = self.get_available_leds()
-
         self.insert_mode_on = self.vim.subscribe("InsertEnter")
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
         self.vim.out_write("vim-icue is ready!\n")
+        self.leds = self.get_available_leds()
 
     @pynvim.command("VimICUELedsCount")
     def get_available_leds(self):
