@@ -2,6 +2,7 @@ import neovim
 import pynvim
 from cuesdk import CueSdk
 import logging
+import time
 
 @neovim.plugin
 class VimICUE(object):
@@ -33,9 +34,12 @@ class VimICUE(object):
     @pynvim.command("VimICUEInsertModeOn")
     def insert_mode_on(self):
         self.vim.out_write("Insert keyboard layout enabled\n")
-        for leds in self.colors:
-            for led in leds:
-                led = (1, 1, 1)
+        for di in range(len(self.colors)):
+            device_leds = self.colors[di]
+            for led in device_leds:
+                device_leds[led] = (0, 1)
+            self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
+            time.sleep(1)
 
     @pynvim.command("VimICUEInsertModeOff")
     def insert_mode_off(self):
