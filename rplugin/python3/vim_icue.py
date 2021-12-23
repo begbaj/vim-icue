@@ -8,7 +8,7 @@ class VimICUE(object):
         logging.basicConfig(level=logging.DEBUG)
         self.vim = vim
         self.insertModeOn = self.vim.subscribe("InsertEnter")
-        self.insertModeOff = self.vim.subscribe("InsertEnter")
+        self.insertModeOff = self.vim.subscribe("InsertLeave")
 
     @neovim.function('VimICUEGetMode', sync=False)
     def getMode(self, args):
