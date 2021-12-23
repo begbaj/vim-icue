@@ -1,4 +1,5 @@
 import neovim
+import cuesdk
 
 @neovim.plugin
 class Main(object):
