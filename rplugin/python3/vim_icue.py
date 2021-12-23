@@ -1,6 +1,7 @@
 import neovim
 import pynvim
 from cuesdk import CueSdk
+from cuesdk.structs import CorsairLedId
 import logging
 import time
 
@@ -50,14 +51,19 @@ class VimICUE(object):
 
     @pynvim.command("VimICUEInsertModeOff")
     def insert_mode_off(self):
+        on_keys = [CorsairLedId.K_J, CorsairLedId.K_K, CorsairLedId.K_L, CorsairLedId.K_H,
+                   CorsairLedId.K_W, CorsairLedId.K_Q, CorsairLedId.K_SemicolonAndColon]
         try:
             for di in range(len(self.colors)):
                 device_leds = self.colors[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        device_leds[led] = (0, 1)
+                        if led in on_keys:
+                            device_leds[led] = (0, 255)
+                        else:
+                            device_leds[led] = (0, 50)
                     if len(device_leds[led]) == 3:
-                        device_leds[led] = (0, 1, 0)
+                        device_leds[led] = (0, 50, 0)
                 self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
             self.cue.set_led_colors_flush_buffer()
             self.vim.out_write("Insert keyboard layout disabled\n")
