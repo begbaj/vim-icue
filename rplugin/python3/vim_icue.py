@@ -1,4 +1,5 @@
 import neovim
+import pynvim
 from cuesdk import CueSdk
 import logging
 
@@ -21,12 +22,14 @@ class VimICUE(object):
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
         self.vim.out_write("vim-icue is ready!\n")
 
+    @pynvim.command("VimICUELedsCount")
     def get_available_leds(self):
         leds = list()
         device_count = self.cue.get_device_count()
         for device_index in range(device_count):
             led_positions = self.cue.get_led_positions_by_device_index(device_index)
             leds.append(led_positions)
+        self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
     def insert_mode_on(self):
