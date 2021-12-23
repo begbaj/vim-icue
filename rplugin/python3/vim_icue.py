@@ -4,7 +4,7 @@ import logging
 
 @neovim.plugin
 class VimICUE(object):
-    def __init__(self, vim:neovim.Nvim):
+    def __init__(self, vim: neovim.Nvim):
         #logging.basicConfig(level=logging.DEBUG)
         self.vim = vim
         self.vim.command("echomsg vim-icue is initializing...")
