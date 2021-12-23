@@ -21,7 +21,7 @@ class VimICUE(object):
         self.insert_mode_off = self.vim.subscribe("InsertLeave")
         self.vim.call("echomsg 'vim-icue is ready!'")
 
-    @neovim.plugin("VimICUE")
+    @neovim.function("VimICUE")
     def vimicue(self):
         print("prova 1")
         self.vim.call("echomsg 'prova 2'")
