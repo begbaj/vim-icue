@@ -161,13 +161,13 @@ local.properties
 # PDT-specific (PHP Development Tools)
 .buildpath
 
-# sbteclipse plugin
+# sbteclipse rplugin
 .target
 
-# Tern plugin
+# Tern rplugin
 .tern-project
 
-# TeXlipse plugin
+# TeXlipse rplugin
 .texlipse
 
 # STS (Spring Tool Suite)
