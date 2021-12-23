@@ -37,9 +37,12 @@ class VimICUE(object):
             for di in range(len(self.colors)):
                 device_leds = self.colors[di]
                 for led in device_leds:
-                    device_leds[led] = (0, 1)
+                    if len(device_leds[led]) == 2:
+                        device_leds[led] = (0, 255)
+                    if len(device_leds[led]) == 3:
+                        device_leds[led] = (0, 255, 0)
                 self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
-                time.sleep(1)
+            self.cue.set_led_colors_flush_buffer()
             self.vim.out_write("Insert keyboard layout enabled\n")
         except Exception as e:
             self.vim.err_write(f"Error occured: {e}")
