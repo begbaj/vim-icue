@@ -81,7 +81,7 @@ class VimICUE(object):
                             device_leds[led] = (int(x), int(y))
                             self.vim.out_write(f'3\n')
                         except:
-                            self.vim.out_write(f'3\n')
+                            self.vim.out_write(f":echo vimicue_{mode}_layout['default']\n")
                             x = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
                             self.vim.out_write(f'{x}\n')
                             device_leds[led] = (int(x), int(y))
