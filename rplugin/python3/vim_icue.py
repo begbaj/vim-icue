@@ -11,8 +11,6 @@ class VimICUE(object):
         self.cue = CueSdk()
         self.connected = False
         self.mode = "normal"
-        self.key_ids = self.vim.command_output(":echo vimicue_keys")
-        self.vim.out_write(f"{self.vim.command_output(':echo vimicue_keys')}\n")
         self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
@@ -74,7 +72,7 @@ class VimICUE(object):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        key = self.key_ids[str(led)]
+                        key = self.vim.command_output(f':echo vimicue_keys[{led}]')
                         if key in key_colors:
                             [x,y] = key_colors[key].split(",")
                             device_leds[led] = (int(x), int(y))
