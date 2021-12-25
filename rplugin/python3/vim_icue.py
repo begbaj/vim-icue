@@ -59,7 +59,7 @@ class VimICUE(object):
                 self.mode = new_mode
             case _:
                 self.vim.out_write("Mode was not changed")
-        self.vim.command("VimICUEAutoLayout")
+        self.automatic_layout()
 
 
 
