@@ -72,7 +72,7 @@ class VimICUE(object):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     self.vim.out_write(f"1\n")
-                    keyname = self.vim.command_output(f':echo vimicue_keys[{led.value}]')
+                    keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
                     self.vim.out_write(f"2\n")
                     color = self.vim.command_output(f":echo vimicue_{mode}_layout[{keyname}]")
                     self.vim.out_write(f"3\n")
