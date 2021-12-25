@@ -8,17 +8,6 @@ import time
 @neovim.plugin
 class VimICUE(object):
     def __init__(self, vim: neovim.Nvim):
-        """
-            NOTES:
-            l:vimicue_insert_layout = { "keyid" : "rgb",
-                                        "default" : "rgb" }
-            l:vimicue_normal_layout = { "keyid" : "rgb",
-                                        "default" : "rgb" }
-            l:vimicue_command_layout = { "keyid" : "rgb",
-                                        "default" : "rgb" }
-            l:vimicue_visual_layout = { "keyid" : "rgb",
-                                        "default" : "rgb" }
-        """
         self.vim = vim
         self.cue = CueSdk()
         self.connected = False
@@ -62,8 +51,6 @@ class VimICUE(object):
         #     case _:
         #         self.vim.out_write("Mode was not changed\n")
         self.automatic_layout()
-
-
 
     @pynvim.command("VimICUEAutoLayout")
     def automatic_layout(self):
