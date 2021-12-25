@@ -75,15 +75,15 @@ class VimICUE(object):
                         keyname = self.vim.command_output(f':echo vimicue_keys[{led.value}]\n')
                         self.vim.out_write(f"{keyname}\n")
                         try:
-                            self.vim.command_output(f'1\n')
-                            [x, y] = self.vim.command_output(f":echo vimicue_{mode}_layout[{keyname}]").split(",")
-                            self.vim.command_output(f'2\n')
+                            self.vim.out_write(f'1\n')
+                            x = self.vim.command_output(f":echo vimicue_{mode}_layout[{keyname}]")
+                            self.vim.out_write(f'2\n')
                             device_leds[led] = (int(x), int(y))
-                            self.vim.command_output(f'3\n')
+                            self.vim.out_write(f'3\n')
                         except:
-                            self.vim.command_output(f'3\n')
+                            self.vim.out_write(f'3\n')
                             [x, y] = self.vim.command_output(f":echo vimicue_{mode}_layout['default']").split(",")
-                            self.vim.command_output(f'4\n')
+                            self.vim.out_write(f'4\n')
                             device_leds[led] = (int(x), int(y))
                     if len(device_leds[led]) == 3:
                         device_leds[led] = (0, 50, 0)
