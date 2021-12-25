@@ -55,12 +55,12 @@ class VimICUE(object):
     def detect_mode(self, args):
         new_mode = args[0]
         self.vim.out_write(f"Mode changed to {new_mode}\n")
-        match self.mode:
-            case 'normal':
-                self.mode = new_mode
-                self.vim.out_write(f"Mode changed to {new_mode}\n")
-            case _:
-                self.vim.out_write("Mode was not changed\n")
+        # match self.mode:
+        #     case 'normal':
+        #         self.mode = new_mode
+        #
+        #     case _:
+        #         self.vim.out_write("Mode was not changed\n")
         self.automatic_layout()
 
 
@@ -71,9 +71,9 @@ class VimICUE(object):
             case 'normal':
                 self.change_mode()
             case 'insert':
-                pass
+                self.change_mode()
             case 'command':
-                pass
+                self.change_mode()
             case 'search':
                 pass
             case 'reverse_search':
@@ -98,6 +98,6 @@ class VimICUE(object):
             self.cue.set_led_colors_flush_buffer()
             self.vim.out_write("Insert keyboard layout disabled\n")
         except Exception as e:
-            self.vim.err_write(f"Error occured: {e}")
+            self.vim.err_write(f"Error occured: {e}\n")
 
 
