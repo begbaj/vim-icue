@@ -65,7 +65,7 @@ class VimICUE(object):
             case 'visual':
                 pass
 
-    @pynvim.function("VimICUEAutoLayout")
+    @pynvim.function("VimICUEAutoLayout", sync=True)
     def change_mode(self, mode):
         try:
             for di in range(len(self.leds)):
@@ -73,9 +73,9 @@ class VimICUE(object):
                 for led in device_leds:
                     keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
                     try:
-                        color = str(self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']"))
+                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
                     except:
-                        color = str(self.vim.command_output(f":echo vimicue_{mode}_layout['default']"))
+                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
                     self.vim.out_write(f"{color} ok \n")
                     if len(color) == 2:
                         self.vim.out_write(f"4\n")
