@@ -76,7 +76,7 @@ class VimICUE(object):
                         color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
                     except:
                         color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
-                    self.vim.out_write(f"{color}\n")
+                    self.vim.out_write(f"{color} ok \n")
                     if len(color) == 2:
                         self.vim.out_write(f"4\n")
                         #self.vim.out_write(f"{color} 1 \n")
