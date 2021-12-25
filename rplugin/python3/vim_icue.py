@@ -12,7 +12,7 @@ class VimICUE(object):
         self.cue = CueSdk()
         self.connected = False
         self.mode = "normal"
-        self.key_ids = dict(self.vim.command_output(":echo vimicue_keys"))
+        self.key_ids = self.vim.command_output(":echo vimicue_keys")
         self.vim.out_write(f"{self.key_ids}\n")
         self.cue_connect()
         if not self.connected:
