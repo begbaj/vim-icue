@@ -13,7 +13,7 @@ class VimICUE(object):
         self.connected = False
         self.mode = "normal"
         self.key_ids = self.vim.command_output(":echo vimicue_keys")
-        self.vim.out_write(f"{self.key_ids}\n")
+        self.vim.out_write(f"{self.key_ids[0]}\n")
         self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
