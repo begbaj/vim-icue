@@ -23,14 +23,14 @@ let g:vimicue_visual_layout = {"default": "0,0,0"}
 let g:vimicue_command_layout = {"default": "0,0,0"}
 
 "SECTION: Default keybindings for mode detection {{{2
-nnoremap r :call VimICUEDetectMode('replace')
-nnoremap i :call VimICUEDetectMode('insert')
-nnoremap v :call VimICUEDetectMode('visual')
-nnoremap : :call VimICUEDetectMode('command')
-nnoremap / :call VimICUEDetectMode('search')
-nnoremap ? :call VimICUEDetectMode('reverse_search')
-noremap <esc> :call VimICUEDetectMode('normal')
-noremap <bs> :call VimICUEDetectMode('unknown')
+nnoremap r :call VimICUEDetectMode('replace')<CR>r
+nnoremap i :call VimICUEDetectMode('insert')<CR>i
+nnoremap v :call VimICUEDetectMode('visual')<CR>v
+nnoremap : :call VimICUEDetectMode('command')<CR>:
+nnoremap / :call VimICUEDetectMode('search')<CR>/
+nnoremap ? :call VimICUEDetectMode('reverse_search')<CR>?
+noremap <esc> :call VimICUEDetectMode('normal')<CR><esc>
+noremap <bs> :call VimICUEDetectMode('unknown')<CR><bs>
 
 "SECTION: Key ids list {{{2
 let g:vimicue_keys = ['klesc', 'klf1', 'klf2', 'klf3', 'klf4', 'klf5', 'klf6', 'klf7', 'klf8', 'klf9', 'klf10', 'klf11', 'klf12', 'kl1', 'kl2', 'kl3', 'kl4', 'kl5', 'kl6', 'kl7', 'kl8', 'kl9', 'kl0', 'klq','klw', 'kle', 'klr', 'klt', 'kly', 'klu', 'kli', 'klo', 'klp', 'kla', 'kls', 'kld', 'klf', 'klg', 'klh', 'klj', 'kl', 'kl', 'kll', 'klz', 'klx', 'klc', 'klv', 'klb', 'kln', 'klm','klsemic', 'klperiod', 'klcomma', 'klslash', 'klbslash', 'klsclosed', 'klsopened', 'klminus', 'kleq', 'kltilde', 'kltab', 'klbloc', 'klm', 'klrshift', 'kllshift', 'klrctr', 'kllctrl','klsuper', 'klalt', 'klspace', 'klenter', 'klup', 'kldown', 'klleft', 'klright']
