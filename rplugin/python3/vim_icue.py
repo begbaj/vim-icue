@@ -24,6 +24,7 @@ class VimICUE(object):
         self.cue = CueSdk()
         self.connected = False
         self.mode = "normal"
+        self.key_ids: dict
         self.key_ids = self.vim.command_output(":echo vimicue_keys")
         self.cue_connect()
         if not self.connected:
@@ -88,8 +89,8 @@ class VimICUE(object):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        if led in self.key_ids:
-                            device_leds[led] = (0, 255)
+                        if led in self.key_ids.values():
+                            device_leds[led] = (0, 100)
                         else:
                             device_leds[led] = (0, 50)
                     if len(device_leds[led]) == 3:
