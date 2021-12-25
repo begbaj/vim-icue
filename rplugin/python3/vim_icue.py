@@ -5,7 +5,7 @@ from cuesdk.structs import CorsairLedId
 import logging
 import time
 
-@pynvim.plugin
+@neovim.plugin
 class VimICUE(object):
     def __init__(self, vim: neovim.Nvim):
         """
