@@ -13,6 +13,7 @@ class VimICUE(object):
         self.connected = False
         self.mode = "normal"
         self.key_ids = dict(self.vim.command_output(":echo vimicue_keys"))
+        self.vim.out_write(f"{self.key_ids}\n")
         self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
@@ -67,13 +68,13 @@ class VimICUE(object):
             case 'visual':
                 pass
 
+    @pynvim.function("VimICUEAutoLayout")
     def change_mode(self, key_colors):
         try:
             for di in range(len(self.leds)):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        self.vim.out_write(f"{self.key_ids}\n")
                         key = self.key_ids[str(led)]
                         if key in key_colors:
                             [x,y] = key_colors[key].split(",")
