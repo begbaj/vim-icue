@@ -8,17 +8,41 @@ import time
 @neovim.plugin
 class VimICUE(object):
     def __init__(self, vim: neovim.Nvim):
-        #logging.basicConfig(level=logging.DEBUG)
+        """
+            NOTES:
+            g:vimicue_on_insert_KEYID = (color)
+            g:vimicue_on_insert_default = (color)
+
+            g:vimicue_on_normal_KEYID = (color)
+            g:vimicue_on_normal_default = (color)
+
+            g:vimicue_on_visual_KEYID = (color)
+            g:vimicue_on_visual_default = (color)
+
+            g:vimicue_on_command_KEYID = (color)
+            g:vimicue_on_command_default = (color)
+        """
         self.vim = vim
         self.vim.out_write("vim-icue is initializing...\n")
+        self.mode = "normal"
+        self.key_ids = []
+        with open("keys.txt", 'r') as fk:
+            self.key_ids.append(fk.readline().replace("\n", ''))
         self.cue = CueSdk()
         self.connected = self.cue.connect()
         if not self.connected:
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-        self.vim.command('au InsertEnter * VimICUEInsertModeOn')
-        self.vim.command('au InsertLeave * VimICUEInsertModeOff')
+
+        self.vim.command("noremap r :call VimICUEDetectMode('replace')<CR>")
+        self.vim.command("noremap i :call VimICUEDetectMode('insert')<CR>")
+        self.vim.command("noremap v :call VimICUEDetectMode('visual')<CR>")
+        self.vim.command("noremap : :call VimICUEDetectMode('command')<CR>")
+        self.vim.command("noremap / :call VimICUEDetectMode('search')<CR>")
+        self.vim.command("noremap ? :call VimICUEDetectMode('reverse_search')<CR>")
+        self.vim.command("noremap <esc> :call VimICUEDetectMode('normal')<CR>")
+
         self.vim.out_write("vim-icue is ready!\n")
         self.colors = self.get_available_colors()
 
@@ -32,27 +56,18 @@ class VimICUE(object):
         self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
-    @pynvim.command("VimICUEInsertModeOn")
-    def insert_mode_on(self):
-        try:
-            for di in range(len(self.colors)):
-                device_leds = self.colors[di]
-                for led in device_leds:
-                    if len(device_leds[led]) == 2:
-                        device_leds[led] = (0, 255)
-                    if len(device_leds[led]) == 3:
-                        device_leds[led] = (0, 255, 0)
-                self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
-            self.cue.set_led_colors_flush_buffer()
-            self.vim.out_write("Insert keyboard layout enabled\n")
-        except Exception as e:
-            self.vim.err_write(f"Error occured: {e}")
+    @pynvim.function("VimICUEDetectMode")
+    def detect_mode(self, args):
+        self.mode = args
 
 
-    @pynvim.command("VimICUEInsertModeOff")
+    @pynvim.command("VimICUEAutoLayout")
+    def automatic_layout(self):
+        mode = ""
+
+
+    @pynvim.command("VimICUEChangeMode")
     def insert_mode_off(self):
-        on_keys = [CorsairLedId.K_J, CorsairLedId.K_K, CorsairLedId.K_L, CorsairLedId.K_H,
-                   CorsairLedId.K_W, CorsairLedId.K_Q, CorsairLedId.K_SemicolonAndColon]
         try:
             for di in range(len(self.colors)):
                 device_leds = self.colors[di]
