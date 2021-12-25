@@ -75,7 +75,7 @@ class VimICUE(object):
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
                         self.vim.out_write(f"{self.key_ids}\n")
-                        key = self.key_ids[led]
+                        key = self.key_ids[str(led)]
                         if key in key_colors:
                             [x,y] = key_colors[key].split(",")
                             device_leds[led] = (int(x), int(y))
