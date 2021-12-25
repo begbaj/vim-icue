@@ -53,7 +53,7 @@ class VimICUE(object):
     def automatic_layout(self):
         match self.mode:
             case 'normal':
-                self.change_mode(dict(self.vim.command_output(":echo vimicue_normal_layout")))
+                self.change_mode()
             case 'insert':
                 self.change_mode(dict(self.vim.command_output(":echo vimicue_insert_layout")))
             case 'command':
@@ -66,18 +66,18 @@ class VimICUE(object):
                 pass
 
     @pynvim.function("VimICUEAutoLayout")
-    def change_mode(self, key_colors):
+    def change_mode(self, mode):
         try:
             for di in range(len(self.leds)):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        key = self.vim.command_output(f':echo vimicue_keys[{led.value}]')
-                        if key in key_colors:
-                            [x,y] = key_colors[key].split(",")
+                        keyname = self.vim.command_output(f':echo vimicue_keys[{led.value}]')
+                        try:
+                            [x,y] = self.vim.command_output(f":echo vimicue_{mode}_layout[{keyname}]").split(",")
                             device_leds[led] = (int(x), int(y))
-                        else:
-                            [x,y] = key_colors["default"].split(",")
+                        except:
+                            [x, y] = self.vim.command_output(f":echo vimicue_{mode}_layout['default']").split(",")
                             device_leds[led] = (int(x), int(y))
                     if len(device_leds[led]) == 3:
                         device_leds[led] = (0, 50, 0)
