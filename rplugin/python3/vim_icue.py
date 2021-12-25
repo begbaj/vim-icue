@@ -1,19 +1,18 @@
-import neovim
 import pynvim
 from cuesdk import CueSdk
 from cuesdk.structs import CorsairLedId
 import logging
 import time
 
-@neovim.plugin
+@pynvim.plugin
 class VimICUE(object):
-    def __init__(self, vim: neovim.Nvim):
+    def __init__(self, vim: pynvim.Nvim):
         self.vim = vim
         self.cue = CueSdk()
         self.connected = False
         self.mode = "normal"
         self.key_ids = self.vim.command_output(":echo vimicue_keys")
-        self.vim.out_write(f"{self.vim.command_output(':echo vimicue_keys')}\n")
+        self.vim.out_write(f"{self.vim.command_output('vimicue_keys')}\n")
         self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
