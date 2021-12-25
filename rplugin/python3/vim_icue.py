@@ -53,11 +53,11 @@ class VimICUE(object):
     def automatic_layout(self):
         match self.mode:
             case 'normal':
-                self.change_mode()
+                self.change_mode('normal')
             case 'insert':
-                self.change_mode(dict(self.vim.command_output(":echo vimicue_insert_layout")))
+                self.change_mode('insert')
             case 'command':
-                self.change_mode(dict(self.vim.command_output(":echo vimicue_command_layout")))
+                self.change_mode('command')
             case 'search':
                 pass
             case 'reverse_search':
