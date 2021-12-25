@@ -25,7 +25,6 @@ class VimICUE(object):
         self.connected = False
         self.mode = "normal"
         self.key_ids = self.vim.command_output(":echo vimicue_keys")
-
         self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
@@ -58,6 +57,7 @@ class VimICUE(object):
         match self.mode:
             case 'normal':
                 self.mode = new_mode
+                self.vim.out_write(f"Mode changed to {new_mode}")
             case _:
                 self.vim.out_write("Mode was not changed")
         self.automatic_layout()
