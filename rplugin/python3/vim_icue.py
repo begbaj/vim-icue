@@ -50,7 +50,7 @@ class VimICUE(object):
         self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
-    @pynvim.function("VimICUEStart")
+    @pynvim.function("VimICUEInit")
     def vimicue_start(self, args):
         self.vim.out_write(f"VimIcue initialized\n")
         pass
