@@ -71,11 +71,9 @@ class VimICUE(object):
             for di in range(len(self.leds)):
                 device_leds = self.leds[di]
                 for led in device_leds:
-                    #self.vim.out_write(f"1\n")
                     keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
-                    #self.vim.out_write(f"2\n")
                     try:
-                        color = str(self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")).split(";")
+                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
                     except:
                         color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
                     self.vim.out_write(f"{color}\n")
