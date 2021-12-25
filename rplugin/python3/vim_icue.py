@@ -19,7 +19,6 @@ class VimICUE(object):
             l:vimicue_visual_layout = { "keyid" : "rgb",
                                         "default" : "rgb" }
         """
-
         self.vim = vim
         self.cue = CueSdk()
         self.connected = False
@@ -31,8 +30,12 @@ class VimICUE(object):
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-        self.vim.out_write(f"VimIcue initialized\n")
         self.leds = self.get_available_leds()
+
+    @pynvim.function("VimICUEStart")
+    def start(self):
+        self.vim.out_write(f"VimIcue initialized\n")
+        pass
 
     @pynvim.command("VimICUEConnect")
     def cue_connect(self):
