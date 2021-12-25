@@ -71,22 +71,22 @@ class VimICUE(object):
             for di in range(len(self.leds)):
                 device_leds = self.leds[di]
                 for led in device_leds:
-                    self.vim.out_write(f"1\n")
+                    #self.vim.out_write(f"1\n")
                     keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
-                    self.vim.out_write(f"2\n")
+                    #self.vim.out_write(f"2\n")
                     try:
-                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
+                        color = str(self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")).split(";")
                     except:
-                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
-                    self.vim.out_write(f"3\n")
+                        color = str(self.vim.command_output(f":echo vimicue_{mode}_layout['default']")).split(";")
+                    #self.vim.out_write(f"3\n")
                     if len(color) == 2:
                         self.vim.out_write(f"4\n")
-                        self.vim.out_write(f"{color} 1 \n")
-                        self.vim.out_write(f"5\n")
+                        #self.vim.out_write(f"{color} 1 \n")
+                        #self.vim.out_write(f"5\n")
                     if len(device_leds[led]) == 3:
-                        self.vim.out_write(f"6\n")
-                        self.vim.out_write(f"{color} 2 \n")
-                        self.vim.out_write(f"7\n")
+                        #self.vim.out_write(f"6\n")
+                        #self.vim.out_write(f"{color} 2 \n")
+                        #self.vim.out_write(f"7\n")
                         # device_leds[led] = (0, 50, 0)
                 self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
             self.cue.set_led_colors_flush_buffer()
