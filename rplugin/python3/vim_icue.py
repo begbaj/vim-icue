@@ -56,11 +56,11 @@ class VimICUE(object):
     def automatic_layout(self):
         match self.mode:
             case 'normal':
-                self.change_mode()
+                self.change_mode(dict(self.vim.command_output(":echo vimicue_normal_layout")))
             case 'insert':
-                self.change_mode()
+                self.change_mode(dict(self.vim.command_output(":echo vimicue_insert_layout")))
             case 'command':
-                self.change_mode()
+                self.change_mode(dict(self.vim.command_output(":echo vimicue_command_layout")))
             case 'search':
                 pass
             case 'reverse_search':
@@ -68,14 +68,13 @@ class VimICUE(object):
             case 'visual':
                 pass
 
-    @pynvim.command("VimICUEChangeMode")
-    def change_mode(self):
+    def change_mode(self, key_colors):
         try:
             for di in range(len(self.leds)):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        if led in self.key_ids.values():
+                        if led in self.key_colors.values():
                             device_leds[led] = (0, 100)
                         else:
                             device_leds[led] = (0, 50)
