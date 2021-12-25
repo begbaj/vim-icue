@@ -32,11 +32,6 @@ class VimICUE(object):
             return
         self.leds = self.get_available_leds()
 
-    @pynvim.function("VimICUEStart")
-    def vimicue_start(self):
-        self.vim.out_write(f"VimIcue initialized\n")
-        pass
-
     @pynvim.command("VimICUEConnect")
     def cue_connect(self):
         self.connected = self.cue.connect()
@@ -54,6 +49,11 @@ class VimICUE(object):
             leds.append(led_positions)
         self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
+
+    @pynvim.function("VimICUEStart")
+    def vimicue_start(self, args):
+        self.vim.out_write(f"VimIcue initialized\n")
+        pass
 
     @pynvim.function("VimICUEDetectMode")
     def detect_mode(self, args):
