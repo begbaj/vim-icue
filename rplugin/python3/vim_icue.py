@@ -30,7 +30,7 @@ class VimICUE(object):
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-        self.vim.out_write(f"VimIcue initialized")
+        self.vim.out_write(f"VimIcue initialized\n")
         self.leds = self.get_available_leds()
 
     @pynvim.command("VimICUEConnect")
@@ -54,13 +54,13 @@ class VimICUE(object):
     @pynvim.function("VimICUEDetectMode")
     def detect_mode(self, args):
         new_mode = args
-        self.vim.out_write(f"Mode changed to {new_mode}")
+        self.vim.out_write(f"Mode changed to {new_mode}\n")
         match self.mode:
             case 'normal':
                 self.mode = new_mode
-                self.vim.out_write(f"Mode changed to {new_mode}")
+                self.vim.out_write(f"Mode changed to {new_mode}\n")
             case _:
-                self.vim.out_write("Mode was not changed")
+                self.vim.out_write("Mode was not changed\n")
         self.automatic_layout()
 
 
