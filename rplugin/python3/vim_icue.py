@@ -33,10 +33,6 @@ class VimICUE(object):
         self.vim.out_write(f"VimIcue initialized\n")
         self.leds = self.get_available_leds()
 
-    @pynvim.autocmd("VimICUEStart")
-    def vim_icue_start(self, handler):
-        pass
-
     @pynvim.command("VimICUEConnect")
     def cue_connect(self):
         self.connected = self.cue.connect()
