@@ -30,7 +30,7 @@ class VimICUE(object):
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-
+        self.vim.out_write(f"VimIcue initialized")
         self.leds = self.get_available_leds()
 
     @pynvim.command("VimICUEConnect")
