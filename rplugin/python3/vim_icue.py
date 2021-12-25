@@ -25,35 +25,11 @@ class VimICUE(object):
         self.connected = False
         self.vim.command_output("VimICUEConnect")
         self.mode = "normal"
-        self.key_ids = ['klesc', 'klf1', 'klf2', 'klf3', 'klf4', 'klf5', 'klf6', 'klf7', 'klf8', 'klf9', 'klf10',
-                        'klf11', 'klf12', 'kl1', 'kl2', 'kl3', 'kl4', 'kl5', 'kl6', 'kl7', 'kl8', 'kl9', 'kl0', 'klq',
-                        'klw', 'kle', 'klr', 'klt', 'kly', 'klu', 'kli', 'klo', 'klp', 'kla', 'kls', 'kld', 'klf',
-                        'klg', 'klh', 'klj', 'kl', 'kl', 'kll', 'klz', 'klx', 'klc', 'klv', 'klb', 'kln', 'klm',
-                        'klsemic', 'klperiod', 'klcomma', 'klslash', 'klbslash', 'klsclosed', 'klsopened', 'klminus',
-                        'kleq', 'kltilde', 'kltab', 'klbloc', 'klm', 'klrshift', 'kllshift', 'klrctr', 'kllctrl',
-                        'klsuper', 'klalt', 'klspace', 'klenter', 'klup', 'kldown', 'klleft', 'klright']
-
-
-
+        self.key_ids = []
         if not self.connected:
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-
-        self.vim.command('let g: vimicue_insert_layout = {"default": "0,0,0}')
-        self.vim.command('let g: vimicue_normal_layout = {"default": "0,0,0}')
-        self.vim.command('let g: vimicue_visual_layout = {"default": "0,0,0}')
-        self.vim.command('let g: vimicue_command_layout = {"default": "0,0,0}')
-
-        self.vim.command("nnoremap r :call VimICUEDetectMode('replace')<CR>")
-        self.vim.command("nnoremap i :call VimICUEDetectMode('insert')<CR>")
-        self.vim.command("nnoremap v :call VimICUEDetectMode('visual')<CR>")
-        self.vim.command("nnoremap : :call VimICUEDetectMode('command')<CR>")
-        self.vim.command("nnoremap / :call VimICUEDetectMode('search')<CR>")
-        self.vim.command("nnoremap ? :call VimICUEDetectMode('reverse_search')<CR>")
-        self.vim.command("noremap <esc> :call VimICUEDetectMode('normal')<CR>")
-        self.vim.command("noremap <bs> :call VimICUEDetectMode('unknown')<CR>")
-
         self.vim.out_write("vim-icue is ready!\n")
         self.colors = self.get_available_colors()
 
