@@ -35,12 +35,12 @@ class VimICUE(object):
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
 
-        self.vim.command("noremap r :call VimICUEDetectMode('replace')<CR>")
-        self.vim.command("noremap i :call VimICUEDetectMode('insert')<CR>")
-        self.vim.command("noremap v :call VimICUEDetectMode('visual')<CR>")
-        self.vim.command("noremap : :call VimICUEDetectMode('command')<CR>")
-        self.vim.command("noremap / :call VimICUEDetectMode('search')<CR>")
-        self.vim.command("noremap ? :call VimICUEDetectMode('reverse_search')<CR>")
+        self.vim.command("nnoremap r :call VimICUEDetectMode('replace')<CR>")
+        self.vim.command("nnoremap i :call VimICUEDetectMode('insert')<CR>")
+        self.vim.command("nnoremap v :call VimICUEDetectMode('visual')<CR>")
+        self.vim.command("nnoremap : :call VimICUEDetectMode('command')<CR>")
+        self.vim.command("nnoremap / :call VimICUEDetectMode('search')<CR>")
+        self.vim.command("nnoremap ? :call VimICUEDetectMode('reverse_search')<CR>")
         self.vim.command("noremap <esc> :call VimICUEDetectMode('normal')<CR>")
 
         self.vim.out_write("vim-icue is ready!\n")
@@ -63,7 +63,7 @@ class VimICUE(object):
 
     @pynvim.command("VimICUEAutoLayout")
     def automatic_layout(self):
-        mode = ""
+        self.mode = ""
 
 
     @pynvim.command("VimICUEChangeMode")
