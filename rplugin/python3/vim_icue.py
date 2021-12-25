@@ -5,7 +5,7 @@ from cuesdk.structs import CorsairLedId
 import logging
 import time
 
-@neovim.plugin
+@pynvim.plugin
 class VimICUE(object):
     def __init__(self, vim: neovim.Nvim):
         """
@@ -30,7 +30,12 @@ class VimICUE(object):
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
+        self.vim.out_write(f"VimIcue initialized\n")
         self.leds = self.get_available_leds()
+
+    @pynvim.command("VimICUEStart")
+    def vim_icue_start(self):
+        pass
 
     @pynvim.command("VimICUEConnect")
     def cue_connect(self):
@@ -49,11 +54,6 @@ class VimICUE(object):
             leds.append(led_positions)
         self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
-
-    @pynvim.command("VimICUEInit")
-    def vimicue_start(self, args):
-        self.vim.out_write(f"VimIcue initialized\n")
-        pass
 
     @pynvim.function("VimICUEDetectMode")
     def detect_mode(self, args):
