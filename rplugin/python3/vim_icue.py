@@ -74,10 +74,13 @@ class VimICUE(object):
                 device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
-                        if led in self.key_colors.values():
-                            device_leds[led] = (0, 100)
+                        key = self.key_ids[led]
+                        if key in key_colors:
+                            [x,y] = key_colors[key].split(",")
+                            device_leds[led] = (int(x), int(y))
                         else:
-                            device_leds[led] = (0, 50)
+                            [x,y] = key_colors["default"].split(",")
+                            device_leds[led] = (int(x), int(y))
                     if len(device_leds[led]) == 3:
                         device_leds[led] = (0, 50, 0)
                 self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
