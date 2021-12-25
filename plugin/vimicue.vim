@@ -31,11 +31,11 @@ if !exists('vimicue_command_layout')
 endif
 
 "SECTION: Default keybindings for mode detection {{{2
-nnoremap r :call VimICUEDetectMode('replace')<CR>r
-nnoremap i :call VimICUEDetectMode('insert')<CR>i
-nnoremap v :call VimICUEDetectMode('visual')<CR>v
-nnoremap : :call VimICUEDetectMode('command')<CR>:
-nnoremap / :call VimICUEDetectMode('search')<CR>/
+noremap r :call VimICUEDetectMode('replace')<CR>r
+noremap i :call VimICUEDetectMode('insert')<CR>i
+noremap v :call VimICUEDetectMode('visual')<CR>v
+noremap : :call VimICUEDetectMode('command')<CR>:
+noremap / :call VimICUEDetectMode('search')<CR>/
 nnoremap ? :call VimICUEDetectMode('reverse_search')<CR>?
 noremap <esc> :call VimICUEDetectMode('normal')<CR><esc>
 noremap <bs> :call VimICUEDetectMode('unknown')<CR><bs>
