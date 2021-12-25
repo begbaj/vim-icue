@@ -33,5 +33,5 @@ noremap <esc> :call VimICUEDetectMode('normal')<CR><esc>
 noremap <bs> :call VimICUEDetectMode('unknown')<CR><bs>
 
 "SECTION: Key ids list {{{2
-let g:vimicue_keys = ['klesc', 'klf1', 'klf2', 'klf3', 'klf4', 'klf5', 'klf6', 'klf7', 'klf8', 'klf9', 'klf10', 'klf11', 'klf12', 'kl1', 'kl2', 'kl3', 'kl4', 'kl5', 'kl6', 'kl7', 'kl8', 'kl9', 'kl0', 'klq','klw', 'kle', 'klr', 'klt', 'kly', 'klu', 'kli', 'klo', 'klp', 'kla', 'kls', 'kld', 'klf', 'klg', 'klh', 'klj', 'kl', 'kl', 'kll', 'klz', 'klx', 'klc', 'klv', 'klb', 'kln', 'klm','klsemic', 'klperiod', 'klcomma', 'klslash', 'klbslash', 'klsclosed', 'klsopened', 'klminus', 'kleq', 'kltilde', 'kltab', 'klbloc', 'klm', 'klrshift', 'kllshift', 'klrctr', 'kllctrl','klsuper', 'klalt', 'klspace', 'klenter', 'klup', 'kldown', 'klleft', 'klright']
+let g:vimicue_keys = ['K_ESC','K_F1','K_F2','K_F3','K_F4','K_F5','K_F6','K_F7','K_F8','K_F9','K_F10','K_F11','K_F12','K_1','K_2','K_3','K_4','K_5','K_6','K_7','K_8','K_9','K_0','K_Q','K_W','K_E','K_R','K_T','K_Y','K_U','K_I','K_O','K_P','K_A','K_S','K_D','K_F','K_G','K_H','K_J','K_','K_','K_L','K_Z','K_X','K_C','K_V','K_B','K_N','K_M','K_SEMIC','K_PERIOD','K_COMMA','K_SLASH','K_BSLASH','K_SCLOSED','K_SOPENED','K_MINUS','K_EQ','K_TILDE','K_TAB','K_BLOC','K_M','K_RSHIFT','K_LSHIFT','K_RCTR','K_LCTRL','K_SUPER','K_ALT','K_SPACE','K_ENTER','K_UP','K_DOWN','K_LEFT','K_RIGHT']
 
