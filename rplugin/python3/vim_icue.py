@@ -74,7 +74,7 @@ class VimICUE(object):
                     self.vim.out_write(f"1\n")
                     keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
                     self.vim.out_write(f"2\n")
-                    color = self.vim.command_output(f":echo vimicue_{mode}_layout[{keyname}]")
+                    color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
                     self.vim.out_write(f"3\n")
                     if len(color) == 2:
                         try:
