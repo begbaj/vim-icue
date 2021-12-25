@@ -18,16 +18,16 @@ let loaded_vim_icue = 1
 
 "SECTION: Initialize variable calls {{{2
 if !exists('vimicue_insert_layout')
-    let g:vimicue_insert_layout = {"default": "0;255"}
+    let g:vimicue_insert_layout = {"default": [0,255]}
 endif
 if !exists('vimicue_normal_layout')
-    let g:vimicue_normal_layout = {"default": "0;255"}
+    let g:vimicue_normal_layout = {"default": [0,255]}
 endif
 if !exists('vimicue_visual_layout')
-    let g:vimicue_visual_layout = {"default": "0;255"}
+    let g:vimicue_visual_layout = {"default": [0,255]}
 endif
 if !exists('vimicue_command_layout')
-    let g:vimicue_command_layout = {"default": "0;255"}
+    let g:vimicue_command_layout = {"default": [0,255]}
 endif
 
 "SECTION: Default keybindings for mode detection {{{2
