@@ -84,6 +84,7 @@ class VimICUE(object):
                         #self.vim.out_write(f"{color} 1 \n")
                         #self.vim.out_write(f"5\n")
                     if len(device_leds[led]) == 3:
+                        pass
                         #self.vim.out_write(f"6\n")
                         #self.vim.out_write(f"{color} 2 \n")
                         #self.vim.out_write(f"7\n")
