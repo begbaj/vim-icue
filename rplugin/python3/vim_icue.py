@@ -19,19 +19,20 @@ class VimICUE(object):
             l:vimicue_visual_layout = { "keyid" : "rgb",
                                         "default" : "rgb" }
         """
+
         self.vim = vim
-        self.vim.out_write("vim-icue is initializing...\n")
         self.cue = CueSdk()
         self.connected = False
-        self.cue_connect()
         self.mode = "normal"
         self.key_ids = []
+
+        self.cue_connect()
         if not self.connected:
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-        self.vim.out_write("vim-icue is ready!\n")
-        self.colors = self.get_available_colors()
+
+        self.leds = self.get_available_leds()
 
     @pynvim.command("VimICUEConnect")
     def cue_connect(self):
@@ -42,7 +43,7 @@ class VimICUE(object):
         self.connected = self.cue.release_control()
 
     @pynvim.command("VimICUELedsCount")
-    def get_available_colors(self):
+    def get_available_leds(self):
         leds = list()
         device_count = self.cue.get_device_count()
         for device_index in range(device_count):
@@ -67,7 +68,7 @@ class VimICUE(object):
     def automatic_layout(self):
         match self.mode:
             case 'normal':
-                pass
+                self.change_mode()
             case 'insert':
                 pass
             case 'command':
@@ -82,8 +83,8 @@ class VimICUE(object):
     @pynvim.command("VimICUEChangeMode")
     def change_mode(self):
         try:
-            for di in range(len(self.colors)):
-                device_leds = self.colors[di]
+            for di in range(len(self.leds)):
+                device_leds = self.leds[di]
                 for led in device_leds:
                     if len(device_leds[led]) == 2:
                         if led in self.key_ids:
