@@ -32,7 +32,7 @@ class VimICUE(object):
             return
         self.leds = self.get_available_leds()
 
-    @pynvim.command("VimICUEStart")
+    @pynvim.autocmd("VimICUEStart")
     def start(self):
         self.vim.out_write(f"VimIcue initialized\n")
         pass
