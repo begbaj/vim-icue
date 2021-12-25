@@ -23,7 +23,7 @@ class VimICUE(object):
         self.vim.out_write("vim-icue is initializing...\n")
         self.cue = CueSdk()
         self.connected = False
-        self.vim.command_output("VimICUEConnect")
+        self.cue_connect()
         self.mode = "normal"
         self.key_ids = []
         if not self.connected:
@@ -38,7 +38,7 @@ class VimICUE(object):
         self.connected = self.cue.connect()
 
     @pynvim.command("VimICUEDisconnect")
-    def cue_connect(self):
+    def cue_disconnect(self):
         self.connected = self.cue.release_control()
 
     @pynvim.command("VimICUELedsCount")
