@@ -67,31 +67,28 @@ class VimICUE(object):
 
     @pynvim.function("VimICUEAutoLayout", sync=True)
     def change_mode(self, mode):
-        try:
-            for di in range(len(self.leds)):
-                device_leds = self.leds[di]
-                for led in device_leds:
-                    keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
-                    self.vim.out_write(f"{keyname} name\n")
-                    try:
-                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
-                    except:
-                        color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
-                    self.vim.out_write(f"{color} ok \n")
-                    if len(color) == 2:
-                        self.vim.out_write(f"4\n")
-                        #self.vim.out_write(f"{color} 1 \n")
-                        #self.vim.out_write(f"5\n")
-                    if len(device_leds[led]) == 3:
-                        pass
-                        #self.vim.out_write(f"6\n")
-                        #self.vim.out_write(f"{color} 2 \n")
-                        #self.vim.out_write(f"7\n")
-                        # device_leds[led] = (0, 50, 0)
-                self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
-            self.cue.set_led_colors_flush_buffer()
-            self.vim.out_write("Insert keyboard layout disabled\n")
-        except Exception as e:
-            self.vim.err_write(f"Error occured: {e}\n")
+        for di in range(len(self.leds)):
+            device_leds = self.leds[di]
+            for led in device_leds:
+                keyname = self.vim.command_output(f":echo vimicue_keys[{led.value}]")
+                self.vim.out_write(f"{keyname} name\n")
+                try:
+                    color = self.vim.command_output(f":echo vimicue_{mode}_layout['{keyname}']")
+                except:
+                    color = self.vim.command_output(f":echo vimicue_{mode}_layout['default']")
+                self.vim.out_write(f"{color} ok \n")
+                if len(color) == 2:
+                    self.vim.out_write(f"4\n")
+                    #self.vim.out_write(f"{color} 1 \n")
+                    #self.vim.out_write(f"5\n")
+                if len(device_leds[led]) == 3:
+                    pass
+                    #self.vim.out_write(f"6\n")
+                    #self.vim.out_write(f"{color} 2 \n")
+                    #self.vim.out_write(f"7\n")
+                    # device_leds[led] = (0, 50, 0)
+            self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
+        self.cue.set_led_colors_flush_buffer()
+        self.vim.out_write("Insert keyboard layout disabled\n")
 
 
