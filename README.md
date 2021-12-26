@@ -1,21 +1,25 @@
-<img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
+# Vim-iCUE
+<p align="center">
+  <img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
+</p>
 
-#vim-icue
-I CUE integration for nvim
-## WARNING
-As of now, I'm testing vim-icue on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
-For this reason, I only need one value (from 0, which means off, to 255, full brightness). 
+Vim-iCUE is the first vim plugin that links together your [Corsair](https://www.corsair.com/it/it/) RGB device with [Neovim](https://neovim.io/)! Make your Neovim experience even better with keyboard RGB themes that changes automatically as you pass from **Insert** to **Normal** mode. Vim-icue is tested only on Windows 10, but it should work with any Windows or MacOS version that supports iCUE.
 
-Theoretically, it should work even on RGB Corsair keyboards, but I'm not sure about that.
+## WARNING!
+As of now, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
+Also, Vim-ICUE is tested only on Windows 10.
 
-Let me know if RGB works fine.
+Theoretically, it should work on RGB Corsair keyboards in both Windows and MacOS, but I'm not sure about that. Let me know if it works.
+
+Unfortunatly, it will not work on Linux, as ICUE is still not supported yet.
 
 ## Installation
 ### Requirements
-1. Nvim with python3 support (if you use nvim, you should already support python3)
-2. Python >= 3.10 
-3. A Corsair keyboard
-4. Vim-Plug or any other plugin manager
+1. iCUE
+2. Nvim with python3 support (if you use nvim, you should already support python3)
+3. Python >= 3.10 
+4. A Corsair keyboard
+5. Vim-Plug or any other plugin manager
 
 Make sure you have all python3 dependencies installed on your machine by running `pip install -r requirements.txt`.
 
