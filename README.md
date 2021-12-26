@@ -25,7 +25,7 @@ To install vim-icue, make sure you have all python3 dependencies installed on yo
 ### Plugging in
 Now you can plug vim-icue into your nvim just by inserting (if you're using vim-plug as your plugin manager) `Plug 'begbaj/vim-icue'` in the  *plugin section* in your **init.vim** as follows:
 
-```
+```init.vim
 call plug#begin()
 " ... other plugins, if any
 Plug 'begbaj/vim-icue'
@@ -33,39 +33,46 @@ Plug 'begbaj/vim-icue'
 call plug#end()
 ```
 
-And now you're ready to go!
+If your keyboard doesn't support rgb, you also need to put this line in your **init.vim**
+```init.vim
+...
+let g:vimicue_is_rgb = 0
+...
+```
+Now you're ready to go! Vim-icue will automatically start after installation is complete.
 
-## Usage
-### Configuration
-By default, all layouts are set to default value of [0,255] which means that all keys in any mode you're on are fully
-brightened. You can change the keyboard lightning behaviour by configuring vim-icue in your **init.vim**.
-### Change layout by mode
-As of now, there are only three modes supported (*Normal, Insert and Command* modes). I'm planning to increase this number to 6,
+## Themes
+By default, vim-icue uses the *begbaj-default-red* theme. To change theme just edit your **init.vim** as follows:
+``` init.vim
+...
+let g:vimicue_theme = '<theme-name>'
+...
+```
+To use a theme you either need to create one or download one.
+### Create a new theme
+Keep in mind that, as of now, there are only three modes supported (*Normal, Insert and Command* modes). I'm planning to increase this number to 6,
 that is *Normal, Insert, Command, Visual, Search, Reversed Search* and maybe others in the future.
+To create a theme, you first need to create a new directory under *templates/* folder:
 
-To customize the layouts you need to follow the following format:
-```
-" ONE COLOR BRIGTHNESS TEMPLATE
-" plugin section
-" ... other init.vim stuff
-let g:vimicue_<mode>_layout = {'<keyname>': [0, <brightness>], ... , 'default': [0, <birghtness>]}
-" ... other init.vim stuff
-" NOTE: This works only if your keyboard supports just one color, as mine does
-```
+* Windows users: open `~/AppData/Local/nvim/plugged/vim-icue/templates` and create a new folder named as your theme;
 
-```
-" RGB TEMPLATE
-" NOTE: THIS IS NOT TESTED YET, I don't know if this works, but it should
-" plugin section
-" ... other init.vim stuff
-let g:vimicue_<mode>_layout = {'<keyname>': [<R>, <G>, <B>], ... , 'default': [<R>, <G>, <B>]}
-" ... other init.vim stuff
-```
-Values between `[]` are all integers from 0 to 255.
+* Linux users: open `~/.vim/plugged/vim-icue/templates` and create a new folder named as your theme;
 
-* Mode: the mode name. Supported modes are `normal, command, insert`
+Under your theme folder, create the following files: `command.json; insert.json; normal.json; visual.json;`
+You need to create `visual.json` even if this file will be empty until visual mode support.
+
+Now you have to define the behavior of the lights of each single key you want to change. All the other keys will take on the color defined by the 'default' Keyname.
+Each `.json` file should be in this format:
+``` if your keyboard supports only one color
+{'<keyname>': [0, <brightness>], ... , 'default': [0, <birghtness>]}
+```
+``` if your keyboard supports RGB
+{'<keyname>': [<R>, <G>, <B>], ... , 'default': [<R>, <G>, <B>]}
+```
 * Keyname: a String value, surrounded by `'`, which identifies each key. 
 * Value: a list of integer values.
+* 
+Values between `[]` are all integers from 0 to 255.
 
 Here is a [List](Keys.md) of all Keyname values  (For common keys, just use the prefix `K_<Key>`)
 
