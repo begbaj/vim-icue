@@ -77,7 +77,7 @@ class VimICUE(object):
                     color = self.vim.eval(f"vimicue_{mode}_layout['default']")
                 if len(color) == 2:
                     device_leds[led] = (color[0], color[1])
-                if len(device_leds[led]) == 3:
+                if len(color) == 3:
                     device_leds[led] = (color[0], color[1], color[2])
             self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
         self.cue.set_led_colors_flush_buffer()
