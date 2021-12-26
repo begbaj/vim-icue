@@ -55,6 +55,7 @@ else
     endif
 endif
 
+" let g:updatetime = 10000
 "SECTION: Autocommands {{{2
 augroup VimICUEEvents
     autocmd!
@@ -65,6 +66,7 @@ augroup VimICUEEvents
     autocmd InsertLeave * call VimICUEModeChange('n')
     autocmd FocusLost * call VimICUEDisconnect()
     autocmd FocusGained * call VimICUEConnect()
+
 augroup END
 
 "SECTION: Key ids list {{{2

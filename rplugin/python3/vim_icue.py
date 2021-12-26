@@ -7,9 +7,10 @@ class VimICUE(object):
         self.vim = vim
         self.cue = CueSdk()
         self.mode = "normal"
+        self.cue_connected = self.cue.connect()
         self.connected = False
         self.connect()
-        if not self.connected:
+        if not self.cue_connected:
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
@@ -18,13 +19,15 @@ class VimICUE(object):
 
     @pynvim.function("VimICUEConnect")
     def connect(self, handler=None):
-        if not self.connected:
-            self.connected = self.cue.connect()
+        self.vim.out_write("FOCUS GAINED \n")
+        self.cue.request_control()
+        self.connected = True
 
     @pynvim.function("VimICUEDisconnect")
     def disconnect(self, handler=None):
-        if self.connected:
-            self.connected = self.cue.release_control()
+        self.vim.out_write("FOCUS LOST \n")
+        self.cue.release_control()
+        self.connected = False
 
     @pynvim.command("VimICUELedsCount")
     def leds_count(self):
