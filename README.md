@@ -65,7 +65,7 @@ Values between `[]` are all integers from 0 to 255.
 * Keyname: a String value, surrounded by `'`, which identifies each key. 
 * Value: a list of integer values.
 
-Here is a list of all Keyname values TODO:list of keynames (For common keys, just use the prefix `K_<Key>`)
+Here is a [List](Keys.md) of all Keyname values  (For common keys, just use the prefix `K_<Key>`)
 
 Keyname examples:
 ```
