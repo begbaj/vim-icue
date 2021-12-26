@@ -59,12 +59,12 @@ endif
 augroup VimICUEEvents
     autocmd!
     " for some reason, using mode() breaks the plugin.
-    au CmdlineEnter * call VimICUEModeChange('c')
-    au CmdlineLeave * call VimICUEModeChange('n')
-    au InsertEnter * call VimICUEModeChange('i')
-    au InsertLeave * call VimICUEModeChange('n')
-    au FocusLost * call VimICUEDisconnect()
-    au FocusGained * call VimICUEConnect()
+    autocmd CmdlineEnter * call VimICUEModeChange('c')
+    autocmd CmdlineLeave * call VimICUEModeChange('n')
+    autocmd InsertEnter * call VimICUEModeChange('i')
+    autocmd InsertLeave * call VimICUEModeChange('n')
+    autocmd FocusLost * call VimICUEDisconnect()
+    autocmd FocusGained * call VimICUEConnect()
 augroup END
 
 "SECTION: Key ids list {{{2
