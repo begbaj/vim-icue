@@ -50,7 +50,7 @@ To customize the layouts you need to follow the following format:
 " ... other init.vim stuff
 let g:vimicue_<mode>_layout = {'<keyname>': [0, <brightness>], ... , 'default': [0, <birghtness>]}
 " ... other init.vim stuff
-" NOTE: This works only if your keyboard only supports one color, as mine does
+" NOTE: This works only if your keyboard supports just one color, as mine does
 ```
 
 ```
