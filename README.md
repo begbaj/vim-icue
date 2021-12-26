@@ -50,7 +50,7 @@ To customize the layouts you need to follow the following format:
 " ... other init.vim stuff
 let g:vimicue_<mode>_layout = {'<keyname>': [0, <brightness>], ... , 'default': [0, <birghtness>]}
 " ... other init.vim stuff
-" NOTE: This is if your keyboard only supports one color, as mine does
+" NOTE: This works only if your keyboard only supports one color, as mine does
 ```
 
 ```
@@ -60,7 +60,6 @@ let g:vimicue_<mode>_layout = {'<keyname>': [0, <brightness>], ... , 'default': 
 " ... other init.vim stuff
 let g:vimicue_<mode>_layout = {'<keyname>': [<R>, <G>, <B>], ... , 'default': [<R>, <G>, <B>]}
 " ... other init.vim stuff
-" NOTE: This is if your keyboard only supports one color, as mine does
 ```
 Values between `[]` are all integers from 0 to 255.
 
