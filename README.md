@@ -1,7 +1,7 @@
 # vim-icue
 I CUE integration for nvim
 ## WARNING
-As of now, I'm testing vim-icue on my own keyboard which is a [Corsair Strafe with Cherry MX Red switches](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
+As of now, I'm testing vim-icue on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
 For this reason, I only need one value (from 0, which means off, to 255, full brightness). 
 Theoretically, it should work even on RGB Corsair keyboards, but I'm not sure about that.
 In this case, `g:vimicue_<mode>_layout = {'default': [0,<value>]}` global variables should be in this form:
