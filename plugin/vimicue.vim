@@ -47,5 +47,5 @@ if !exists('vimicue_keys')
 endif
 
 "SECTION: Autocommands {{{2
-au focusgained * VimICUEConnect
-au focuslost * VimICUEDisconnect
+au FocusGained * VimICUEConnect
+au FocusLost * VimICUEDisconnect
