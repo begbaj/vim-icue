@@ -1,7 +1,7 @@
 # vim-icue
 I CUE integration for nvim
 ## WARNING
-As of now, i-m testing vim-icue on my own keyboard which is "TODO: insert keyboard model" and supports only red color.
+As of now, I'm testing vim-icue on my own keyboard which is "TODO: insert keyboard model" and supports only red color.
 For this reason, I only need one value (from 0, which means off, to 255, full brightness). 
 Theoretically, it should work even on RGB Corsair keyboards, but I'm not sure about that.
 In this case, `g:vimicue_<mode>_layout = {'default': [0,<value>]}` global variables should be in this form:
