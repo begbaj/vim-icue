@@ -81,6 +81,5 @@ class VimICUE(object):
                     device_leds[led] = (color[0], color[1], color[2])
             self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
         self.cue.set_led_colors_flush_buffer()
-        self.vim.out_write("Insert keyboard layout disabled\n")
 
 
