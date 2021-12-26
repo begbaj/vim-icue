@@ -1,8 +1,5 @@
 import pynvim
 from cuesdk import CueSdk
-from cuesdk.structs import CorsairLedId
-import logging
-import time
 
 @pynvim.plugin
 class VimICUE(object):
@@ -11,52 +8,45 @@ class VimICUE(object):
         self.cue = CueSdk()
         self.connected = False
         self.mode = "normal"
-        self.cue_connect()
+        self.connect()
         if not self.connected:
             err = self.cue.get_last_error()
             self.vim.out_write(f"Handshake failed: {err}\n")
             return
-        self.vim.out_write(f"VimIcue initialized\n")
-        self.leds = self.get_available_leds()
+        # self.vim.out_write(f"VimIcue initialized\n")
+        self.leds = self.leds_count()
 
-    @pynvim.command("VimICUEConnect")
-    def cue_connect(self):
-        self.connected = self.cue.connect()
+    @pynvim.autocmd("VimICUEConnect")
+    def connect(self, handler=None):
+        if not self.connected:
+            # self.vim.out_write(f"connected\n")
+            self.connected = self.cue.connect()
 
-    @pynvim.command("VimICUEDisconnect")
-    def cue_disconnect(self):
-        self.connected = self.cue.release_control()
+    @pynvim.autocmd("VimICUEDisconnect")
+    def disconnect(self, handler=None):
+        if self.connected:
+            # self.vim.out_write(f"disconnected\n")
+            self.connected = self.cue.release_control()
 
     @pynvim.command("VimICUELedsCount")
-    def get_available_leds(self):
+    def leds_count(self):
         leds = list()
         device_count = self.cue.get_device_count()
         for device_index in range(device_count):
             led_positions = self.cue.get_led_positions_by_device_index(device_index)
             leds.append(led_positions)
-        self.vim.out_write(f"There are {len(leds)} leds available\n")
+        # self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
-    @pynvim.function("VimICUEDetectMode")
-    def detect_mode(self, args):
+    @pynvim.function("VimICUEModeChange")
+    def mode_change(self, args):
         self.mode = args[0]
-        self.vim.out_write(f"Mode changed to {args[0]}\n")
-        # match self.mode:
-        #     case 'normal':
-        #         self.mode = new_mode
-        #
-        #     case _:
-        #         self.vim.out_write("Mode was not changed\n")
-        self.automatic_layout()
-
-    @pynvim.command("VimICUEAutoLayout")
-    def automatic_layout(self):
         match self.mode:
-            case 'normal':
+            case 'n':
                 self.change_mode('normal')
-            case 'insert':
+            case 'i':
                 self.change_mode('insert')
-            case 'command':
+            case 'c':
                 self.change_mode('command')
             case 'search':
                 pass
@@ -64,9 +54,10 @@ class VimICUE(object):
                 pass
             case 'visual':
                 pass
+        self.automatic_layout()
 
     @pynvim.function("VimICUEAutoLayout", sync=True)
-    def change_mode(self, mode):
+    def auto_layout(self, mode):
         self.vim.out_write(f"vimicue_{mode}_layout\n")
         for di in range(len(self.leds)):
             device_leds = self.leds[di]
