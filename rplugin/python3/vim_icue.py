@@ -19,12 +19,12 @@ class VimICUE(object):
         self.vim.out_write(f"VimIcue initialized\n")
         self.leds = self.get_available_leds()
 
-    @pynvim.command("VimICUEConnect")
+    @pynvim.autocmd("VimICUEConnect")
     def cue_connect(self):
         if not self.connected:
             self.connected = self.cue.connect()
 
-    @pynvim.command("VimICUEDisconnect")
+    @pynvim.autocmd("VimICUEDisconnect")
     def cue_disconnect(self):
         if self.connected:
             self.connected = self.cue.release_control()
