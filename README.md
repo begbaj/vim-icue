@@ -1,4 +1,6 @@
-# vim-icue
+<img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
+
+#vim-icue
 I CUE integration for nvim
 ## WARNING
 As of now, I'm testing vim-icue on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
