@@ -40,7 +40,8 @@ By default, vim-icue uses the *begbaj-default-red* theme. To change theme just e
 let g:vimicue_theme = '<theme-name>'
 ```
 To use a theme you either need to create one or download one.
-If you want to change just the behaviour of one layout, you can overwrite themes in your **init.vim**:
+
+If you want to change just the behaviour of one layout, you can override themes in your **init.vim**:
 
 ```init.vim
 " --- if your keyboard does support rgb:
