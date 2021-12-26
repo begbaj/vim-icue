@@ -1,8 +1,5 @@
 import pynvim
 from cuesdk import CueSdk
-from cuesdk.structs import CorsairLedId
-import logging
-import time
 
 @pynvim.plugin
 class VimICUE(object):
