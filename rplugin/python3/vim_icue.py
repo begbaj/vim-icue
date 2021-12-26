@@ -71,6 +71,7 @@ class VimICUE(object):
             device_leds = self.leds[di]
             for led in device_leds:
                 keyname = self.vim.eval(f"vimicue_keys[{led.value}]")
+                self.vim.out_write(f"vimicue_{mode}_layout['{keyname}']")
                 try:
                     color = self.vim.eval(f"vimicue_{mode}_layout['{keyname}']")
                 except:
