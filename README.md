@@ -55,7 +55,7 @@ let g:vimicue_<mode>_layout = {'<keyname>': [0, <brightness>], ... , 'default': 
 
 ```
 " RGB TEMPLATE
-" NOTE: THIS IS NOT TESTED YET, I don't know if this works
+" NOTE: THIS IS NOT TESTED YET, I don't know if this works, but it should
 " plugin section
 " ... other init.vim stuff
 let g:vimicue_<mode>_layout = {'<keyname>': [<R>, <G>, <B>], ... , 'default': [<R>, <G>, <B>]}
