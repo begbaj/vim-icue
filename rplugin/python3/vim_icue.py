@@ -22,11 +22,13 @@ class VimICUE(object):
     @pynvim.autocmd("VimICUEConnect")
     def cue_connect(self, handler=None):
         if not self.connected:
+            self.vim.out_write(f"connected\n")
             self.connected = self.cue.connect()
 
     @pynvim.autocmd("VimICUEDisconnect")
     def cue_disconnect(self, handler=None):
         if self.connected:
+            self.vim.out_write(f"disconnected\n")
             self.connected = self.cue.release_control()
 
     @pynvim.command("VimICUELedsCount")
