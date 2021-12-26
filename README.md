@@ -56,7 +56,7 @@ To create a theme, you first need to create a new directory under *templates/* f
 
 * Windows users: open `~/AppData/Local/nvim/plugged/vim-icue/templates` and create a new folder named as your theme;
 
-* Linux users: open `~/.vim/plugged/vim-icue/templates` and create a new folder named as your theme;
+* MacOS users: open `~/.vim/plugged/vim-icue/templates` and create a new folder named as your theme;
 
 Under your theme folder, create the following files:
 
