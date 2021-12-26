@@ -20,7 +20,7 @@ Let me know if this works fine.
 
 To install vim-icue, make sure you have all python3 dependencies installed on your machine:
 
-`pip install -r requirements`
+`pip install -r requirements.txt`
 
 ### Plugging in
 Now you can plug vim-icue into your nvim just by inserting (if you're using vim-plug as your plugin manager) `Plug 'begbaj/vim-icue'` in the  *plugin section* in your **init.vim** as follows:
