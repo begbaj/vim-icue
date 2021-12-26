@@ -39,9 +39,8 @@ class VimICUE(object):
 
     @pynvim.function("VimICUEDetectMode")
     def detect_mode(self, args):
-        new_mode = args[0]
-        self.mode = new_mode
-        self.vim.out_write(f"Mode changed to {new_mode}\n")
+        self.mode = args[0]
+        self.vim.out_write(f"Mode changed to {args[0]}\n")
         # match self.mode:
         #     case 'normal':
         #         self.mode = new_mode
