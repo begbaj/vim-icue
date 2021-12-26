@@ -75,17 +75,10 @@ class VimICUE(object):
                     color = self.vim.eval(f"vimicue_{mode}_layout['{keyname}']")
                 except:
                     color = self.vim.eval(f"vimicue_{mode}_layout['default']")
-                self.vim.out_write(f"{color} ok \n")
                 if len(color) == 2:
-                    self.vim.out_write(f"4\n")
-                    #self.vim.out_write(f"{color} 1 \n")
-                    #self.vim.out_write(f"5\n")
+                    device_leds[led] = (color[0], color[1])
                 if len(device_leds[led]) == 3:
-                    pass
-                    #self.vim.out_write(f"6\n")
-                    #self.vim.out_write(f"{color} 2 \n")
-                    #self.vim.out_write(f"7\n")
-                    # device_leds[led] = (0, 50, 0)
+                    device_leds[led] = (color[0], color[1], color[2])
             self.cue.set_led_colors_buffer_by_device_index(di, device_leds)
         self.cue.set_led_colors_flush_buffer()
         self.vim.out_write("Insert keyboard layout disabled\n")
