@@ -3,7 +3,7 @@
   <img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
 </p>
 
-Vim-iCUE is the first vim plugin that links together your [Corsair](https://www.corsair.com/) RGB device with
+Vim-iCUE is the first Neovim plugin that links together your [Corsair](https://www.corsair.com/) RGB device with
 [Neovim](https://neovim.io/)! Make your Neovim experience even better with keyboard RGB themes that changes 
 automatically as you pass from **Insert** to **Normal** to **Command** mode. Vim-iCUE is tested only on Windows 10, 
 but it should work
