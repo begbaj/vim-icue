@@ -115,12 +115,6 @@ Here is a [List](Keys.md) of all Keyname values.
 Once you configured  the layouts as you like, just reload your **init.vim** and use nvim as usual. You will see effects
 on your keyboard immediately as you type.
 
-# FocusLost/FocusGained events
-Windows doesn't support these Vim events, which means that I'm not able to temporally disable Vim-iCUE exclusive device
-control while Neovim is open.
-
-I hope that this works on MacOS, but I can't test it.
-
 # TODO:
 - [ ] Keyname grouping (like: *numbers*, *letters*, ...)
 - [ ] Keyboard effects
