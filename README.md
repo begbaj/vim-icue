@@ -17,15 +17,18 @@ In theory, it should work even on RGB Corsair keyboards in both Windows and MacO
 
 Unfortunatly, it will not work on Linux, as iCUE is still not supported yet.
 
-## Installation
-### Requirements
+## DEMO
+![demo](readme/img/demo.gif)
+
+# Installation
+## Requirements
   * [iCUE](https://www.corsair.com/downloads)
   * [Neovim](https://neovim.io/)
   * Python >= 3.10 (maybe 3.7 is enough) 
   * A Corsair keyboard
   * Any Vim plugin manager, I recommend [Vim-plug](https://github.com/junegunn/vim-plug)
 
-### Plugging-in
+## Plugging-in
 Plug Vim-iCUE into your Neovim in the  *plugin section* in your **init.vim**.
 
 For example, using Vim-plug it will look something like this:
@@ -36,7 +39,7 @@ Plug 'begbaj/vim-icue'
 " .. other plugins, if any
 call plug#end()
 ```
-### Non-RGB Keyboard support
+## Non-RGB Keyboard support
 
 If your keyboard doesn't support RGB, you also need to set this variable in **init.vim**
 ```init.vim
@@ -44,7 +47,7 @@ let g:vimicue_is_rgb = 0
 ```
 Now you're ready to go! Vim-iCUE will automatically start after installation is complete.
 
-## Themes
+# Themes
 By default, Vim-iCUE uses the *begbaj-default-red* theme. To change theme just edit your **init.vim** as follows:
 ```init.vim
 let g:vimicue_theme = '<theme-name>'
@@ -62,7 +65,7 @@ let g:vimicue_<mode>_layout = {'<keyname>':[0, <Brightness>], ... , 'default': [
 
 This will still load the previously selected theme, but will also override one (or more) layout(s).
 
-### Create a new theme
+## Create a new theme
 Keep in mind that, at the moment, there are only three modes supported (*Normal, Insert and Command*).
 I'm planning to increase this number to 5 (*Normal, Insert, Command, Visual, Search*) or more in the future.
 To create a theme, you first need to create a new directory under *templates/* folder:
@@ -76,7 +79,7 @@ Under your theme folder, create the following files:
 * Non-RGB templates: *command.json; insert.json; normal.json;*
 * RGB templates: *command-rgb.json; insert-rgb.json; normal-rgb.json;*
 * 
-### Template
+## Template
 
 Now you have to define the behavior of the lights of each single key you want to change. All the other keys will take
 on the color defined by the 'default' Keyname.
@@ -108,7 +111,7 @@ and so on...
 
 Here is a [List](Keys.md) of all Keyname values.
 
-### Usage after configuration is done
+## Usage after configuration is done
 Once you configured  the layouts as you like, just reload your **init.vim** and use nvim as usual. You will see effects
 on your keyboard immediately as you type.
 
