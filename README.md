@@ -10,7 +10,7 @@ but it should work
 with any Windows or MacOS version that supports iCUE.
 
 ## WARNING!
-As of now, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
+At the moment, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and supports only red color.
 Also, Vim-iCUE is tested only on Windows 10.
 
 In theory, it should work even on RGB Corsair keyboards in both Windows and MacOS, but I'm not sure about that. Let me know if it works.
