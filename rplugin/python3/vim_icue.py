@@ -43,13 +43,19 @@ class VimICUE(object):
     def mode_change(self, args):
         # self.vim.out_write(f"{args}\n")
         mode = args[0]
-        match mode:
-            case 'n':
-                self.mode = 'normal'
-            case 'i':
-                self.mode = 'insert'
-            case 'c':
-                self.mode = 'command'
+        # match mode:
+        #     case 'n':
+        #         self.mode = 'normal'
+        #     case 'i':
+        #         self.mode = 'insert'
+        #     case 'c':
+        #         self.mode = 'command'
+        if mode == 'n':
+            self.mode = 'normal'
+        elif mode == 'i':
+            self.mode = 'insert'
+        elif mode == 'c':
+            self.mode = 'command'
         self.auto_layout()
 
     @pynvim.command("VimICUEAutoLayout")
