@@ -3,7 +3,7 @@
   <img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
 </p>
 
-Vim-iCUE is the first vim plugin that links together your [Corsair](https://www.corsair.com/) RGB device with
+Vim-iCUE is the first Neovim plugin that links together your [Corsair](https://www.corsair.com/) RGB device with
 [Neovim](https://neovim.io/)! Make your Neovim experience even better with keyboard RGB themes that changes 
 automatically as you pass from **Insert** to **Normal** to **Command** mode. Vim-iCUE is tested only on Windows 10, 
 but it should work
@@ -19,11 +19,11 @@ Unfortunatly, it will not work on Linux, as iCUE is still not supported yet.
 
 ## Installation
 ### Requirements
-1. [iCUE](https://www.corsair.com/downloads)
-2. [Neovim](https://neovim.io/)
-3. Python >= 3.10 
-4. A Corsair keyboard
-5. Any vim plugin manager, I recommend [Vim-plug](https://github.com/junegunn/vim-plug)
+  * [iCUE](https://www.corsair.com/downloads)
+  * [Neovim](https://neovim.io/)
+  * Python >= 3.10 (maybe 3.7 is enough) 
+  * A Corsair keyboard
+  * Any Vim plugin manager, I recommend [Vim-plug](https://github.com/junegunn/vim-plug)
 
 ### Plugging-in
 Plug Vim-iCUE into your Neovim in the  *plugin section* in your **init.vim**.
@@ -54,13 +54,13 @@ To use a theme you either need to create one or download one.
 If you want to change the behaviour of one layout, you can override themes in your **init.vim**:
 
 ```init.vim
-" --- if your keyboard does support rgb:
+" --- if RGB support is enabled:
 let g:vimicue_<mode>_layout = {'<keyname>': [<R>, <G>, <B>], ... , 'default': [<R>, <G>, <B>]}
-" --- if your keyboard doesn't support rgb:
+" --- if RGB support is disabled:
 let g:vimicue_<mode>_layout = {'<keyname>':[0, <Brightness>], ... , 'default': [0, <Brightness>]}
 ```
 
-This will still load previously selected theme, but will also override one (or more) layout.
+This will still load the previously selected theme, but will also override one (or more) layout(s).
 
 ### Create a new theme
 Keep in mind that, at the moment, there are only three modes supported (*Normal, Insert and Command*).
@@ -76,9 +76,11 @@ Under your theme folder, create the following files:
 * Non-RGB templates: *command.json; insert.json; normal.json;*
 * RGB templates: *command-rgb.json; insert-rgb.json; normal-rgb.json;*
 * 
+### Template
+
 Now you have to define the behavior of the lights of each single key you want to change. All the other keys will take
 on the color defined by the 'default' Keyname.
-### Template
+
 Each `.json` should be in this format:
 
 In RGB templates:
