@@ -34,9 +34,9 @@ if exists('vimicue_is_rgb')
     if !exists('vimicue_normal_layout')
         let g:vimicue_normal_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/normal.json"))
     endif
-    if !exists('vimicue_visual_layout')
-        let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual.json"))
-    endif
+    "if !exists('vimicue_visual_layout')
+    "    let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual.json"))
+    "endif
     if !exists('vimicue_command_layout')
         let g:vimicue_command_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/command.json"))
     endif
@@ -47,24 +47,26 @@ else
     if !exists('vimicue_normal_layout')
         let g:vimicue_normal_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/normal-rgb.json"))
     endif
-    if !exists('vimicue_visual_layout')
-        let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual-rgb.json"))
-    endif
+    "if !exists('vimicue_visual_layout')
+    "    let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual-rgb.json"))
+    "endif
     if !exists('vimicue_command_layout')
         let g:vimicue_command_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/command-rgb.json"))
     endif
 endif
 
+" let g:updatetime = 10000
 "SECTION: Autocommands {{{2
 augroup VimICUEEvents
     autocmd!
     " for some reason, using mode() breaks the plugin.
-    au CmdlineEnter * call VimICUEModeChange('c')
-    au CmdlineLeave * call VimICUEModeChange('n')
-    au InsertEnter * call VimICUEModeChange('i')
-    au InsertLeave * call VimICUEModeChange('n')
-    au FocusLost * call VimICUEDisconnect()
-    au FocusGained * call VimICUEConnect()
+    autocmd CmdlineEnter * call VimICUEModeChange('c')
+    autocmd CmdlineLeave * call VimICUEModeChange('n')
+    autocmd InsertEnter * call VimICUEModeChange('i')
+    autocmd InsertLeave * call VimICUEModeChange('n')
+    autocmd FocusLost * call VimICUEDisconnect()
+    autocmd FocusGained * call VimICUEConnect()
+
 augroup END
 
 "SECTION: Key ids list {{{2
