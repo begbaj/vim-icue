@@ -50,12 +50,6 @@ class VimICUE(object):
                 self.mode = 'insert'
             case 'c':
                 self.mode = 'command'
-            case 'search':
-                pass
-            case 'reverse_search':
-                pass
-            case 'visual':
-                pass
         self.auto_layout()
 
     @pynvim.command("VimICUEAutoLayout")

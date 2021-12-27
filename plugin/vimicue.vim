@@ -34,9 +34,9 @@ if exists('vimicue_is_rgb')
     if !exists('vimicue_normal_layout')
         let g:vimicue_normal_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/normal.json"))
     endif
-    if !exists('vimicue_visual_layout')
-        let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual.json"))
-    endif
+    "if !exists('vimicue_visual_layout')
+    "    let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual.json"))
+    "endif
     if !exists('vimicue_command_layout')
         let g:vimicue_command_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/command.json"))
     endif
@@ -47,9 +47,9 @@ else
     if !exists('vimicue_normal_layout')
         let g:vimicue_normal_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/normal-rgb.json"))
     endif
-    if !exists('vimicue_visual_layout')
-        let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual-rgb.json"))
-    endif
+    "if !exists('vimicue_visual_layout')
+    "    let g:vimicue_visual_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/visual-rgb.json"))
+    "endif
     if !exists('vimicue_command_layout')
         let g:vimicue_command_layout = json_decode(readfile(plugged_home . "/vim-icue/templates/" . vimicue_theme . "/command-rgb.json"))
     endif
