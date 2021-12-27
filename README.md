@@ -19,11 +19,11 @@ Unfortunatly, it will not work on Linux, as iCUE is still not supported yet.
 
 ## Installation
 ### Requirements
-1. [iCUE](https://www.corsair.com/downloads)
-2. [Neovim](https://neovim.io/)
-3. Python >= 3.10 (maybe 3.7 is enough) 
-4. A Corsair keyboard
-5. Any Vim plugin manager, I recommend [Vim-plug](https://github.com/junegunn/vim-plug)
+  * [iCUE](https://www.corsair.com/downloads)
+  * [Neovim](https://neovim.io/)
+  * Python >= 3.10 (maybe 3.7 is enough) 
+  * A Corsair keyboard
+  * Any Vim plugin manager, I recommend [Vim-plug](https://github.com/junegunn/vim-plug)
 
 ### Plugging-in
 Plug Vim-iCUE into your Neovim in the  *plugin section* in your **init.vim**.
