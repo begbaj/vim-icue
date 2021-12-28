@@ -116,7 +116,7 @@ Once you configured  the layouts as you like, just reload your **init.vim** and 
 on your keyboard immediately as you type.
 
 # TODO:
-- [ ] Faster layout update
+- [X] Faster layout update
 - [ ] Keyname grouping (like: *numbers*, *letters*, ...)
 - [ ] Command tree integration
 - [ ] Keyboard effects
