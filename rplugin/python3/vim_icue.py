@@ -44,6 +44,7 @@ class VimICUE(object):
 
 class AsyncICUE:
     def __init__(self, nvim: pynvim.Nvim):
+        self.print_enabled = False
         self.cue = CueSdk()
         self.nvim = nvim
         self.mode = 'normal'
@@ -109,10 +110,11 @@ class AsyncICUE:
         return leds
 
     def nvim_print(self, message, auto_newline=True):
-        if auto_newline:
-            self.nvim.out_write(message + "\n")
-        else:
-            self.nvim.out_write(message)
+        if self.print_enabled:
+            if auto_newline:
+                self.nvim.out_write(message + "\n")
+            else:
+                self.nvim.out_write(message)
 
     def cache_layouts(self, layouts: {}):
         """
