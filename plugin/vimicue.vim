@@ -19,7 +19,7 @@ let loaded_vim_icue = 1
 if has('win32') || has('win64')
     let plugged_home = expand('~/AppData/Local/nvim/plugged')
 else
-    let plugged_home = expand('~/.vim/plugged')
+    let plugged_home = expand('~/.config/nvim/plugged')
 endif
 
 if !exists('vimicue_theme')
