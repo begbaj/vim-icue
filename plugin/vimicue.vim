@@ -68,19 +68,31 @@ augroup VimICUEEvents
 augroup END
 
 function VimICUEGetKeyColor(cmode, ckey)
-        if a:cmode == "normal"
-            let keydict = g:vimicue_normal_layout
-        elseif a:cmode == "command"
-            let keydict = g:vimicue_command_layout
-        elseif a:cmode == "insert"
-            let keydict = g:vimicue_insert_layout
-        endif
-
-        if keydict->has_key(a:ckey)
-            return keydict[a:ckey]
+        let l:keydict = VimICUEGetLayout(a:cmode)
+        if l:keydict->has_key(a:ckey)
+            return l:keydict[a:ckey]
         else
-            return keydict['default']
+            return l:keydict['default']
         endif
+endfunction
+
+function VimICUEGetLayout(cmode)
+        if a:cmode == "normal"
+            return g:vimicue_normal_layout
+        elseif a:cmode == "command"
+            return g:vimicue_command_layout
+        elseif a:cmode == "insert"
+            return g:vimicue_insert_layout
+        endif
+endfunction
+
+function VimICUEGetKeyColorById(cmode, cid)
+    let l:keydict = VimICUEGetLayout(a:cmode)
+    if l:keydict->has_key(g:vimicue_keys[a:cid])
+        return l:keydict[g:vimicue_keys[a:cid]]
+    else
+        return l:keydict['default']
+    endif
 endfunction
 
 function VimICUEGetKeyName(key_id)
