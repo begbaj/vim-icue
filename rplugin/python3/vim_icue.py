@@ -15,7 +15,7 @@ class VimICUE(object):
         except Exception as error:
             self.aicue.nvim_print(f"{error}")
 
-    @pynvim.function("VimICUEConnect")
+    @pynvim.command("VimICUEConnect")
     def connect(self):
         self.aicue.connect()
         layouts = {}
@@ -31,7 +31,7 @@ class VimICUE(object):
     def play(self):
         self.aicue.play()
 
-    @pynvim.function("VimICUEDisconnect")
+    @pynvim.command("VimICUEDisconnect")
     def disconnect(self):
         self.aicue.disconnect()
 
@@ -63,6 +63,17 @@ class AsyncICUE:
         self.can_update = False
         self.cached_layouts = {}
 
+    def get_current_mode(self):
+        mode = self.nvim.call("mode")
+        if mode == 'n':
+            self.mode = 'normal'
+        elif mode == 'i':
+            self.mode = 'insert'
+        else:
+            self.mode = 'command'
+        self.load_cached_layout()
+        self.can_update = True
+
     def connect(self):
         if not self.cue.connect():
             err = self.cue.get_last_error()
@@ -85,8 +96,11 @@ class AsyncICUE:
     def play(self):
         self.is_close = False
         if not self.updater.is_alive():
+            self.updater = Thread(target=self.layout_updater)
             self.updater.start()
         self.cue.request_control()
+        self.get_current_mode()
+
 
     def stop(self):
         self.is_close = True
@@ -150,5 +164,4 @@ class AsyncICUE:
                 except Exception as err:
                     self.nvim.async_call(self.nvim_print, f"Error {traceback.format_exc()}")
                     self.key_queue = []
-        self.nvim.async_call(self.nvim_print, "Updater close")
 
