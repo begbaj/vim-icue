@@ -17,6 +17,9 @@ In theory, it should work even on RGB Corsair keyboards in both Windows and MacO
 
 Unfortunatly, it will not work on Linux, as iCUE is still not supported yet.
 
+## DISCLAIMER!
+This IS NOT an OFFICIAL Corsair project. I'm not responsible for any damage to your Corsair device as this code comes with no warranty.
+
 ## DEMO
 ![demo](readme/img/demo.gif)
 
