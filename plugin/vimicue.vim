@@ -66,6 +66,7 @@ augroup VimICUEEvents
     autocmd FocusLost * VimICUEStop
     autocmd FocusGained * VimICUEPlay
     autocmd vimenter * VimICUEPlay
+    autocmd vimleave * VimICUEDisconnect
 augroup END
 
 function VimICUEGetKeyColor(cmode, ckey)
