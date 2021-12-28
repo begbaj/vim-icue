@@ -118,6 +118,7 @@ on your keyboard immediately as you type.
 # TODO:
 - [ ] Faster layout update
 - [ ] Keyname grouping (like: *numbers*, *letters*, ...)
+- [ ] Command tree integration
 - [ ] Keyboard effects
 - [ ] Mouse support
 
