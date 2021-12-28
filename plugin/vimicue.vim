@@ -58,11 +58,10 @@ endif
 "SECTION: Autocommands {{{2
 augroup VimICUEEvents
     autocmd!
-    " for some reason, using mode() breaks the plugin.
-    autocmd CmdlineEnter * call VimICUEModeChange('c')
-    autocmd CmdlineLeave * call VimICUEModeChange('n')
-    autocmd InsertEnter * call VimICUEModeChange('i')
-    autocmd InsertLeave * call VimICUEModeChange('n')
+    autocmd CmdlineEnter * VimICUEModeChanged
+    autocmd CmdlineLeave * VimICUEModeChanged
+    autocmd InsertEnter * VimICUEModeChanged
+    autocmd InsertLeave * VimICUEModeChanged
     autocmd FocusLost * VimICUEStop
     autocmd FocusGained * VimICUEPlay
     autocmd vimenter * VimICUEPlay

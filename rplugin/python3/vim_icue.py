@@ -35,23 +35,16 @@ class VimICUE(object):
     def disconnect(self):
         self.aicue.disconnect()
 
-    @pynvim.function("VimICUEModeChange")
-    def mode_change(self, args):
-        mode = args[0]
-        if mode == 'n':
-            self.aicue.mode = 'normal'
-        elif mode == 'i':
-            self.aicue.mode = 'insert'
-        elif mode == 'c':
-            self.aicue.mode = 'command'
-        else:
-            return
+    @pynvim.command("VimICUEModeChanged")
+    def mode_change(self):
+        self.aicue.get_current_mode()
         self.aicue.load_cached_layout()
         self.aicue.can_update = True
 
 
 class AsyncICUE:
     def __init__(self, nvim: pynvim.Nvim):
+        self.print_enabled = False
         self.cue = CueSdk()
         self.nvim = nvim
         self.mode = 'normal'
@@ -69,7 +62,7 @@ class AsyncICUE:
             self.mode = 'normal'
         elif mode == 'i':
             self.mode = 'insert'
-        else:
+        elif mode == "c":
             self.mode = 'command'
         self.load_cached_layout()
         self.can_update = True
@@ -117,10 +110,11 @@ class AsyncICUE:
         return leds
 
     def nvim_print(self, message, auto_newline=True):
-        if auto_newline:
-            self.nvim.out_write(message + "\n")
-        else:
-            self.nvim.out_write(message)
+        if self.print_enabled:
+            if auto_newline:
+                self.nvim.out_write(message + "\n")
+            else:
+                self.nvim.out_write(message)
 
     def cache_layouts(self, layouts: {}):
         """
