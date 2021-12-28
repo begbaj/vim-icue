@@ -65,6 +65,7 @@ augroup VimICUEEvents
     autocmd InsertLeave * call VimICUEModeChange('n')
     autocmd FocusLost * VimICUEStop
     autocmd FocusGained * VimICUEPlay
+    autocmd vimenter * VimICUEPlay
 augroup END
 
 function VimICUEGetKeyColor(cmode, ckey)

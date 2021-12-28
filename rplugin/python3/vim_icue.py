@@ -16,13 +16,11 @@ class VimICUE(object):
             self.aicue.nvim_print(f"{error}")
 
     @pynvim.function("VimICUEConnect")
-    def connect(self, handler=None):
+    def connect(self):
         self.aicue.connect()
         layouts = {}
-        self.aicue.nvim_print("FINO A QUI TUTTO BENE")
         for m in ["normal", "insert", "command"]:
             layouts[m] = self.aicue.get_layout(m)
-        self.aicue.nvim_print("CI SIAMO")
         self.aicue.cache_layouts(layouts)
 
     @pynvim.command("VimICUEStop")
@@ -34,7 +32,7 @@ class VimICUE(object):
         self.aicue.play()
 
     @pynvim.function("VimICUEDisconnect")
-    def disconnect(self, handler=None):
+    def disconnect(self):
         self.aicue.disconnect()
 
     @pynvim.function("VimICUEModeChange")
@@ -48,7 +46,6 @@ class VimICUE(object):
             self.aicue.mode = 'command'
         else:
             return
-        #self.aicue.refill()
         self.aicue.load_cached_layout()
         self.aicue.can_update = True
 
@@ -65,8 +62,6 @@ class AsyncICUE:
         self.is_close = False
         self.can_update = False
         self.cached_layouts = {}
-        # self.refill()
-        # self.play()
 
     def connect(self):
         if not self.cue.connect():
@@ -105,7 +100,6 @@ class AsyncICUE:
         for device_index in range(device_count):
             led_positions = self.cue.get_led_positions_by_device_index(device_index)
             leds.append(led_positions)
-        # self.vim.out_write(f"There are {len(leds)} leds available\n")
         return leds
 
     def nvim_print(self, message, auto_newline=True):
@@ -124,35 +118,15 @@ class AsyncICUE:
         key_layout = []
         for di in range(len(self.leds)):
             device_leds = self.leds[di]
-            # start = datetime.datetime.now()
             for led in device_leds:
-                # per aumentare la velcoita bisogna agire in questo pezzo i codice
-                # self.key_queue.append([self.get_color(self.mode, led.value), led, di])
                 key_layout.append([self.nvim.call('VimICUEGetKeyColorById', mode, led.value), led, di])
-                # self.nvim_print(f"{datetime.datetime.now() - start}")
         return key_layout
-
-    def refill(self):
-        #key_queue = []
-        self.nvim_print(f"CHIAMATA con modo {self.mode}")
-
-        #self.key_queue = key_queue.copy()
-        self.can_update = True
 
     def load_cached_layout(self, layout_name=None):
         if layout_name is not None:
             self.key_queue = self.cached_layouts[layout_name].copy()
         else:
             self.key_queue = self.cached_layouts[self.mode].copy()
-
-    def get_color(self, mode, id):
-        return self.VimICUEGetKeyColor(mode, self.VimICUEGetKeyName(id))
-
-    def VimICUEGetKeyName(self, id):
-        return self.nvim.call('VimICUEGetKeyName', id)
-
-    def VimICUEGetKeyColor(self, mode, keyname):
-        return self.nvim.call('VimICUEGetKeyColor', mode, keyname)
 
     def layout_updater(self):
         while not self.is_close:
@@ -169,7 +143,6 @@ class AsyncICUE:
                                 leds[device][led] = (int(color[0]), int(color[1]))
                             else:
                                 leds[device][led] = (int(color[0]), int(color[1]), int(color[2]))
-                            #self.nvim.async_call(self.nvim_print, f"{color}")
                             if len(self.key_queue) == 0:
                                 self.cue.set_led_colors_buffer_by_device_index(device, leds[device])
 
