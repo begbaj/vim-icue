@@ -12,6 +12,7 @@ class VimICUE(object):
             self.vim = vim
             self.aicue = AsyncICUE(vim)
             self.connect()
+            self.vim.vars["vimicue_python_loaded"] = 1
         except Exception as error:
             self.aicue.nvim_print(f"{error}")
 
@@ -37,14 +38,16 @@ class VimICUE(object):
 
     @pynvim.command("VimICUEModeChanged")
     def mode_change(self):
-        self.aicue.get_current_mode()
-        self.aicue.load_cached_layout()
-        self.aicue.can_update = True
+        self.aicue.update_current_mode()
+
+    @pynvim.function("VimICUEUpdateModeFromScript")
+    def update_from_script(self, mode):
+        self.aicue.update_current_mode_from_script(mode)
 
 
 class AsyncICUE:
     def __init__(self, nvim: pynvim.Nvim):
-        self.print_enabled = False
+        self.print_enabled = True
         self.cue = CueSdk()
         self.nvim = nvim
         self.mode = 'normal'
@@ -56,16 +59,18 @@ class AsyncICUE:
         self.can_update = False
         self.cached_layouts = {}
 
-    def get_current_mode(self):
-        mode = self.nvim.call("mode")
-        if mode == 'n':
-            self.mode = 'normal'
-        elif mode == 'i':
-            self.mode = 'insert'
-        elif mode == "c":
-            self.mode = 'command'
-        self.load_cached_layout()
-        self.can_update = True
+    def update_current_mode(self):
+        #self.mode = self.nvim.call("VimICUEGetCurrentMode")
+        #self.can_update = True
+        #self.load_cached_layout()
+        return
+
+    def update_current_mode_from_script(self, mode):
+        if self.mode != mode[0]:
+            self.mode = mode[0]
+            self.can_update = True
+            self.load_cached_layout()
+        return
 
     def connect(self):
         if not self.cue.connect():
@@ -92,7 +97,7 @@ class AsyncICUE:
             self.updater = Thread(target=self.layout_updater)
             self.updater.start()
         self.cue.request_control()
-        self.get_current_mode()
+        self.update_current_mode()
 
 
     def stop(self):
