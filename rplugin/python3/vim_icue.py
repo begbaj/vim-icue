@@ -97,7 +97,6 @@ class AsyncICUE:
             self.updater = Thread(target=self.layout_updater)
             self.updater.start()
         self.cue.request_control()
-        self.update_current_mode()
 
 
     def stop(self):
