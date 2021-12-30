@@ -102,13 +102,17 @@ class VimICUE(object):
             for led in device_leds:
                 if keys[str(led.value)] in theme[mode]:
                     nl = [theme[mode][keys[str(led.value)]], led, di]
-                else:
+                elif keys[str(led.value)] in theme['default']:
+                    nl = [theme['default'][keys[str(led.value)]], led, di]
+                elif 'default' in theme[mode]:
                     nl = [theme[mode]['default'], led, di]
+                else:
+                    nl = [theme['default']['default'], led, di]
                 key_layout.append(nl)
         self.__nvim_print(f"Completed for {mode}")
         return key_layout
 
-    @pynvim.command("VimICUEReloadTheme")
+    #@pynvim.command("VimICUEReloadTheme")
     def __load_cached_layout(self):
         """
         Reload layouts to cache

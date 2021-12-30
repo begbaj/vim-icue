@@ -44,7 +44,7 @@
     "K_M": [0,255],
     "K_Space": [0,255],
     "K_Escape":[0,255],
-    "default": [0,20]
+    "default": [0,90]
   },
   "normal":
   {
@@ -67,7 +67,7 @@
   "replace":
   {
     "K_F12": [0,255],
-    "default": [0,150]
+    "default": [0,10]
   },
   "default":
   {

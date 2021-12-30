@@ -116,7 +116,7 @@ function! s:icue_disconnect()
 endfunction
 
 
-
+"command! VimICUEReloadTheme call s:load_theme()
 
 "SECTION: Autocommands {{{2
 augroup VimICUEEvenets
