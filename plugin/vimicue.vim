@@ -95,28 +95,6 @@ function! s:update_current_mode()
         return
 endfunction
 
-"TODO: REMOVE THIS FUNCTION, just get the variable into python without calling any function
-function! s:get_layout(cmode)
-        if a:cmode == "normal"
-            return g:vimicue_normal_layout
-        elseif a:cmode == "command"
-            return g:vimicue_command_layout
-        elseif a:cmode == "insert"
-            return g:vimicue_insert_layout
-        elseif a:cmode == "visual"
-            return g:vimicue_visual_layout
-        endif
-endfunction
-
-function! VimICUEGetKeyColorById(cmode, cid)
-    let l:keydict = VimICUEGetLayout(a:cmode)
-    if l:keydict->has_key(g:vimicue_keys[a:cid])
-        return l:keydict[g:vimicue_keys[a:cid]]
-    else
-        return l:keydict['default']
-    endif
-endfunction
-
 function! s:focus_gained()
     call s:load_theme()
     VimICUEPlay
@@ -147,7 +125,7 @@ augroup VimICUEEvenets
     " TODO: stop script function
     autocmd FocusLost * call s:focus_lost()
     autocmd FocusGained * call s:focus_gained()
-    "autocmd VimEnter, FocusGained * call s:icue_connect()
+    autocmd VimEnter, FocusGained * call s:icue_connect()
     " TODO: disconnect script function
     autocmd vimleave * call s:icue_disconnect()
 augroup END

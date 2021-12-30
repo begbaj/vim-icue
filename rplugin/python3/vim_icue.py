@@ -9,7 +9,7 @@ from cuesdk import CueSdk
 class VimICUE(object):
     def __init__(self, nvim: pynvim.Nvim):
         # enable __nvim_print function
-        self.print_enabled = True
+        self.print_enabled = False
         self.mode = 'normal'
         self.connected = False
         self.leds = []
@@ -108,6 +108,7 @@ class VimICUE(object):
         self.__nvim_print(f"Completed for {mode}")
         return key_layout
 
+    @pynvim.command("VimICUEReloadTheme")
     def __load_cached_layout(self):
         """
         Reload layouts to cache
