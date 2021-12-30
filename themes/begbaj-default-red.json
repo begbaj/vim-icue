@@ -1,0 +1,21 @@
+{
+  "command": {
+    "default" : [0,250]
+  },
+  "insert":
+  {
+    "default": [0,200]
+  },
+  "normal":
+  {
+    "default": [0,150]
+  },
+  "visual":
+  {
+    "default": [0,100]
+  },
+  "default":
+  {
+    "default": [0,10]
+  }
+}

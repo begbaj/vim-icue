@@ -5,7 +5,7 @@ for pair in original.split(','):
     [key, value] = pair.replace("'", "").split(':')
     nkey = value
     nvalue = key
-    reversed.append(f"{key} = 'VALUE'\n")
+    reversed.append(f'"{nkey}" : "{nvalue}",\n')
 with open("result", 'w') as r:
     r.write(''.join(reversed))
 
