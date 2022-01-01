@@ -6,7 +6,7 @@ let loaded_vim_icue=1
 " SECTION: Configuration
 " ===============================================================================
 
-let g:vimicue_debug_enabled=1     " enable debugging outputs
+let g:vimicue_debug_enabled=0     " enable debugging outputs
 if !exists('vimicue_home')
     if has('win32') || has('win64')
         let g:vimicue_home=expand('~/AppData/Local/nvim/plugged/vim-icue/')

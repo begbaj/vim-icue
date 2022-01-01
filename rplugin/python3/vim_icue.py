@@ -10,8 +10,9 @@ from cuesdk import CueSdk
 class VimICUE(object):
     def __init__(self, nvim: pynvim.Nvim):
         # enable __nvim_print function
+        self.allow_queue = False
         self.updater_is_on = False
-        self.print_enabled = True
+        self.print_enabled = False
         self.mode = 'default'
         self.connected = False
         self.leds = []
@@ -138,15 +139,23 @@ class VimICUE(object):
             self.__nvim_print(f"--Caching mode: {mode}")
             self.cached_layouts[mode] = self.__get_layout(mode)
         self.__nvim_print("-------Caching completed")
+        self.allow_queue = True
+        self.refresh_forced(self.mode)
 
     def __refresh_key_queue(self, mode):
         """
         Refill key queue
         """
-        self.__nvim_print(f"Key queue will contain {len(self.cached_layouts[mode])} entries.")
-        self.__nvim_print("Refreshing key_queue...")
-        self.key_queue = self.cached_layouts[mode].copy()
-        self.__nvim_print("Refreshing completed")
+        try:
+            if self.allow_queue:
+                self.__nvim_print(f"Key queue will contain {len(self.cached_layouts[mode])} entries.")
+                self.__nvim_print("Refreshing key_queue...")
+                self.key_queue = self.cached_layouts[mode].copy()
+                self.__nvim_print("Refreshing completed")
+            else:
+                self.__nvim_print("Layouts are not ready yet!")
+        except KeyError as err:
+            self.__nvim_print(f"{mode} not found. Maybe its too early...")
 
     def layout_updater(self):
         def nprint(message):
