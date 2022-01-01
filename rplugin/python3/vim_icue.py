@@ -11,7 +11,7 @@ class VimICUE(object):
     def __init__(self, nvim: pynvim.Nvim):
         # enable __nvim_print function
         self.print_enabled = False
-        self.mode = 'default'
+        self.mode = 'defaul'
         self.connected = False
         self.leds = []
         self.key_queue = []
