@@ -1,6 +1,7 @@
-import datetime
 import traceback
 from threading import Thread
+
+import cuesdk
 import pynvim
 from cuesdk import CueSdk
 
@@ -10,7 +11,7 @@ class VimICUE(object):
     def __init__(self, nvim: pynvim.Nvim):
         # enable __nvim_print function
         self.print_enabled = False
-        self.mode = 'normal'
+        self.mode = 'default'
         self.connected = False
         self.leds = []
         self.key_queue = []
@@ -23,24 +24,34 @@ class VimICUE(object):
         self.nvim = nvim
         self.updater = Thread(target=self.layout_updater)
 
-        self.connect()
-
-    @pynvim.function("VimICUERefresh")
-    def refresh(self, mode):
-        nmode = ''.join(mode)
-        if self.mode != nmode:
+    @pynvim.function("VimICUERefreshForce")
+    def refresh_forced(self, mode):
+        if self.connected:
+            nmode = ''.join(mode)
             self.mode = nmode
             self.can_update = True
             self.__refresh_key_queue(self.mode)
         return
 
+    @pynvim.function("VimICUERefresh")
+    def refresh(self, mode, force=False):
+        if self.connected:
+            nmode = ''.join(mode)
+            if force or self.mode != nmode:
+                self.mode = nmode
+                self.can_update = True
+                self.__refresh_key_queue(self.mode)
+        return
+
     @pynvim.command("VimICUEConnect")
     def connect(self):
         if not self.cue.connect():
+            self.connected = False
             err = self.cue.get_last_error()
             self.nvim.out_write(f"Handshake failed: {err}\n")
             return False
         else:
+            self.connected = True
             self.leds = self.__leds_count()
             self.cue.request_control()
             self.__load_cached_layout()
@@ -64,7 +75,7 @@ class VimICUE(object):
             self.updater = Thread(target=self.layout_updater)
             self.updater.start()
         self.cue.request_control()
-        self.refresh(self.mode)
+        self.refresh(self.mode, True)
 
     @pynvim.command("VimICUEStop")
     def stop(self):
@@ -75,6 +86,7 @@ class VimICUE(object):
 
     def __leds_count(self):
         leds = list()
+        self.cue.get_devices()
         device_count = self.cue.get_device_count()
         for device_index in range(device_count):
             led_positions = self.cue.get_led_positions_by_device_index(device_index)
@@ -100,11 +112,11 @@ class VimICUE(object):
             keys = self.nvim.vars['vimicue_keys']
             theme = self.nvim.vars['vimicue_theme']
             for led in device_leds:
-                if keys[str(led.value)] in theme[mode]:
+                if mode in theme and keys[str(led.value)] in theme[mode]:
                     nl = [theme[mode][keys[str(led.value)]], led, di]
                 elif keys[str(led.value)] in theme['default']:
                     nl = [theme['default'][keys[str(led.value)]], led, di]
-                elif 'default' in theme[mode]:
+                elif mode in theme and 'default' in theme[mode]:
                     nl = [theme[mode]['default'], led, di]
                 else:
                     nl = [theme['default']['default'], led, di]
@@ -112,25 +124,24 @@ class VimICUE(object):
         self.__nvim_print(f"Completed for {mode}")
         return key_layout
 
-    #@pynvim.command("VimICUEReloadTheme")
     def __load_cached_layout(self):
         """
         Reload layouts to cache
         """
-        self.__nvim_print(f"Caching layout...")
-        self.cached_layouts = {}
+        self.__nvim_print("Caching layout...")
+        self.cached_layouts = dict()
         for mode in self.nvim.vars['vimicue_theme'].keys():
             self.cached_layouts[mode] = self.__get_layout(mode)
-        self.__nvim_print(f"Caching completed")
+        self.__nvim_print("Caching completed")
 
     def __refresh_key_queue(self, mode):
         """
         Refill key queue
         """
         self.__nvim_print(f"Current list of cached layouts: {self.cached_layouts}")
-        self.__nvim_print(f"Refreshing key_queue...")
+        self.__nvim_print("Refreshing key_queue...")
         self.key_queue = self.cached_layouts[mode].copy()
-        self.__nvim_print(f"Refreshing completed")
+        self.__nvim_print("Refreshing completed")
 
     def layout_updater(self):
         while not self.is_close:
@@ -155,3 +166,4 @@ class VimICUE(object):
             except Exception as err:
                 self.nvim.async_call(self.__nvim_print, f"Error {err} \n {traceback.format_exc()}")
                 self.key_queue = []
+
