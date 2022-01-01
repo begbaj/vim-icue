@@ -11,7 +11,8 @@ automatically as you pass from **Insert** to **Normal** to **Command** mode.
 ## WARNING!
 At the moment, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and only supports red color.
 
-Vim-iCUE is only tested on Windows 10. It should work with any Windows or MacOS version that supports iCUE, but I'm not sure about that. Let me know if it works.
+Vim-iCUE is only tested on Windows 10. It should work with any Windows or MacOS version that supports iCUE, but I'm not sure about that. Let me know if it works 
+visiting me on the official [NDD Discord server](https://discord.gg/ZA76nJ3RsU).
 
 Unfortunatly, it will not work on Linux, as iCUE is still not supported yet.
 
