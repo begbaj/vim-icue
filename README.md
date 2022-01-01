@@ -1,5 +1,5 @@
 # Vim-iCUE
-![Discord](https://img.shields.io/discord/926217143194886234?color=%235865F2&label=NDD%20Official%20Discord&logo=discord&style=for-the-badge)
+[![Discord](https://img.shields.io/discord/926217143194886234?color=%235865F2&label=NDD%20Official%20Discord&logo=discord&style=for-the-badge)](https://discord.gg/ZA76nJ3RsU)
 <p align="center">
   <img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
 </p>
