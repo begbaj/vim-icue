@@ -148,7 +148,7 @@ Dictonary values correspond to available theme modes.
 * [CUE SDK Docs](https://corsairofficial.github.io/cue-sdk/#single-color-devices)
 # TODO:
 - [X] Faster layout update
-- [ ] Keyname grouping (like: *numbers*, *letters*, ...)
+- [X] Keyname grouping (like: *numbers*, *letters*, ...)
 - [ ] Command tree integration
 - [ ] Keyboard effects
 - [ ] Mouse support
