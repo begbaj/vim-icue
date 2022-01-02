@@ -1,35 +1,37 @@
 # List of keynames
-Notice that all keynames are in CamelCase.
-## Special keys
+
+## Special/Unknown keys
+| Keyname           | Note                    |
+|-------------------|-------------------------|
+| K_NonUsBackslash  |?|
+| K_Lang2 | |
+| K_Lang1 | |
+
+
 ## Common keys
-* K_Escape = `Esc`
-* K_F< number > = `F<number>` (these are all the function keys, from 1 to 12)
-* K_GraveAccentAndTilde = ``` ` ``` and `~`
-* K_< number > = `<number>` all numbers from 0 to 9
-* K_MinusAndUnderscore = `-` and `_`
-* K_Tab = `Tab`
-* K_< Uppercase Alphabetic Key > = Corresponds to all alphabetic keys
-  * Example: `K_Q = Q` and `K_M = M`
-* K_BracketLeft = `[` and `{`
-* K_BracketRight = `]` and `}`
-* K_CapsLock = `CapsLock`
-* K_SemicolonAndColon = `;` and `:`
-* K_ApostropheAndDoubleQuote = `'` and `"`
-* K_LeftShift and K_RightShift
-* K_LeftCtrl and K_RightControl
-* K_NonUsBackslash = ` \ ` and `|`
-* K_CommaAndLessThan = `,` and `<`
-* K_PeriodAndBiggerThan = `.` and `>`
-* K_SlashAndQuestionMark = `/` and `?`
+| Keyname           | Note                    |
+|-------------------|-------------------------|
+| K_Escape          |
+| K_F[number]       | 
+| K_GraveAccentAndTilde ||
+| K_[number] |  from 0 to 9|
+| K_MinusAndUnderscore ||
+| K_Tab ||
+| K_[Uppercase Alphabetic Key] | `K_Q` is `Q` and `q` |
+| K_BracketLeft | `[` and `{` |
+| K_BracketRight | `]` and `}`|
+| K_CapsLock ||
+| K_SemicolonAndColon ||
+| K_ApostropheAndDoubleQuote ||
+| K_LeftShift and K_RightShift ||
+| K_LeftCtrl and K_RightControl ||
+| K_LeftAlt and K_RightAlt ||
+| K_Bacslask ||
+| K_CommaAndLessThan ||
+| K_PeriodAndBiggerThan ||
+| K_SlashAndQuestionMark ||
+| K_Space ||
 
-## TODO:
-K_LeftAlt = 'VALUE'
-
-K_Lang2 = 'VALUE'
-
-K_Space = 'VALUE'
-
-K_Lang1 = 'VALUE'
 
 K_International2 = 'VALUE'
 
