@@ -136,7 +136,8 @@ Neovim provides a ton of different modes, and each mode is usually identified by
 ```
 > Note: Map is inspired to vim-airline
 Dictonary values correspond to available theme modes.
-
+# References
+* [CUE SDK Docs](https://corsairofficial.github.io/cue-sdk/#single-color-devices)
 # TODO:
 - [X] Faster layout update
 - [ ] Keyname grouping (like: *numbers*, *letters*, ...)
