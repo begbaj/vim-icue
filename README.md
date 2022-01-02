@@ -71,8 +71,16 @@ Here's an example of a theme:
    },
    "insert":
    {
-      "K_I": [0,0,255]
+      "letters": [0,0,255],
+      "numbers": [0,255,0]
    }
+   "groupings":
+   {
+      "letters":[ "K_Q", "K_W", "K_E", "K_R", "K_T", "K_Y", "K_U", "K_I", "K_O", "K_P", "K_A", "K_S", "K_D", "K_F", "K_G",
+                  "K_H", "K_J", "K_K", "K_L", "K_Z", "K_X", "K_C", "K_V", "K_B", "K_N", "K_M"],
+      "numbers": ["K_1", "K_2", "K_3", "K_4", "K_5", "K_6", "K_7", "K_8", "K_9", "K_0"],
+      "function_keys": ["K_F1","K_F2","K_F3","K_F4","K_F5","K_F6","K_F7","K_F8","K_F9","K_F10","K_F11","K_F12"]
+   },
    "default":{
       "K_Escape": [255,0,0]
       "default":[255,255,255]
@@ -81,7 +89,7 @@ Here's an example of a theme:
 ```
 *behavior*:
 1. **normal** mode: `Esc` will be white and all other keys will be red.
-2. **insert** mode: `Esc` will be red, `I` will be blue and all other keys will be white.
+2. **insert** mode: `Esc` will be red, all keys in `letters` group will be blue while those in `numbers` will be green and all other keys will be white.
 3. Other modes: `Esc` will be red and all other keys will be white.
 
 ## Entries
