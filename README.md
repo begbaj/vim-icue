@@ -100,7 +100,7 @@ Non-RGB entries:
 
 Where:
 * Keyname is a String value that identifies the key. 
-* \[R,G,B\] and \[0, Brightness\] are a lists of 3 and 2 integer values from 0 to 255.
+* \[R,G,B\] and \[0, Brightness\] are lists of 3 and 2 integer values from 0 to 255.
 
 Keyname examples:
 ```
