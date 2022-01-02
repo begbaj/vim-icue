@@ -112,10 +112,15 @@ class VimICUE(object):
         """
         key_layout = []
         self.__nvim_print(f"~Generating layout for mode {mode}")
+        # Check for groupings: if any, compile to g:theme
+        keys = self.nvim.vars['vimicue_keys']
+        theme = self.nvim.vars['vimicue_theme']
+        # WORKFLOW EXPLAINED
+        # First: check if there are groupings in the theme
+        # if sa, substitute the grouping with actual keynames contained in the group
+        # Second: get layout per mode
         for di in range(len(self.leds)):
             device_leds = self.leds[di]
-            keys = self.nvim.vars['vimicue_keys']
-            theme = self.nvim.vars['vimicue_theme']
             for led in device_leds:
                 if mode in theme and keys[str(led.value)] in theme[mode]:
                     nl = [theme[mode][keys[str(led.value)]], led, di]
@@ -126,8 +131,32 @@ class VimICUE(object):
                 else:
                     nl = [theme['default']['default'], led, di]
                 key_layout.append(nl)
+
         self.__nvim_print(f"~Layout generated for {mode} mode. This layout contains {len(key_layout)} entries.")
         return key_layout
+
+    def __precompile(self):
+        self.__nvim_print("!!!!!Precompiling...")
+        theme = self.nvim.vars['vimicue_theme']
+        if 'groupings' not in theme:
+            return
+
+        groupings = self.nvim.vars['vimicue_theme']['groupings']
+
+        for group in groupings:
+            self.__nvim_print(group)
+            for mode in theme:
+                if mode == "groupings":
+                    continue
+                for key in theme[mode]:
+                    if group == key:
+                        for groupkey in groupings[group]:
+                            self.__nvim_print(f"MODE: {mode} GROUPKEY: {groupkey} mode_key: {theme[mode][key]}")
+                            if groupkey not in theme[mode] and groupkey not in theme["default"]:
+                                self.nvim.call("VimICUEAddToTheme", mode, groupkey, theme[mode][key])
+                            # self.nvim.vars['vimicue_theme'][mode][groupkey] = theme[mode][key]
+                        self.__nvim_print(f"{self.nvim.vars['vimicue_theme'][mode]}")
+        self.__nvim_print("!!!!!Precomipling finished.")
 
     def __load_cached_layout(self):
         """
@@ -135,6 +164,7 @@ class VimICUE(object):
         """
         self.__nvim_print("-------Caching layout...")
         self.cached_layouts = {}
+        self.__precompile()
         for mode in self.nvim.vars['vimicue_theme'].keys():
             self.__nvim_print(f"--Caching mode: {mode}")
             self.cached_layouts[mode] = self.__get_layout(mode)

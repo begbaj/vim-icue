@@ -69,6 +69,10 @@ let g:vimicue_keys=json_decode(join(readfile(expand(g:vimicue_home . 'plugin/vim
 " SECTION: global functions
 " ===============================================================================
 
+function! VimICUEAddToTheme(tmode, keyname, value)
+    let g:vimicue_theme[a:tmode][a:keyname] = a:value
+endfunction
+
 function! VimICUELoadTheme()
     call VimICUEPrintDebug("Loading theme...")
     try
