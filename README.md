@@ -9,7 +9,8 @@ Vim-iCUE is a Neovim plugin that links together your [Corsair](https://www.corsa
 automatically as you pass from **Insert** to **Normal** to **Command** mode.
 
 ## WARNING!
-**UPDATE**: I'm currently working on a new project that uses OpenRGB instead of iCUE for better integration. I will make the repo pubblic as soon as a working version is available. 
+**UPDATE**: I'm currently working on a new project that uses OpenRGB instead of iCUE for better integration. I will make the repo pubblic as soon as a working version is available.
+
 At the moment, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and only supports red color.
 
 Vim-iCUE is only tested on Windows 10. It should work with any Windows or MacOS version that supports iCUE, but I'm not sure about that. Let me know if it works 
