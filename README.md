@@ -4,11 +4,12 @@
   <img src="readme/img/vimicue_logo.png" alt="drawing" width="200"/>
 </p>
 
-Vim-iCUE is a Neovim plugin that links together your [Corsair](https://www.corsair.com/) RGB keyboard with
-[Neovim](https://neovim.io/)! Make your Neovim experience even better with keyboard RGB themes that change 
+Vim-iCUE is a vim and neovim plugin that links your [Corsair](https://www.corsair.com/) RGB keyboard with
+to vim/neovim! Make your experience better with keyboard RGB themes that change 
 automatically as you pass from **Insert** to **Normal** to **Command** mode.
 
 ## WARNING!
+**ARCHIVE**: I'm not willing to continue the development of this project anymore since I'm fully switched to linux since the release of this plugin. I'm therefore archiving this project.
 **UPDATE**: I'm currently working on a new project that uses OpenRGB instead of iCUE for better integration. I will make the repo public as soon as a working version is available.
 
 At the moment, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and only supports red color.
@@ -27,7 +28,7 @@ This IS NOT an OFFICIAL Corsair project. I'm not responsible for any damage to y
 # Installation
 ## Requirements
   * [iCUE](https://www.corsair.com/downloads)
-  * [Neovim](https://neovim.io/)
+  * [Neovim](https://neovim.io/) or Vim
   * Python >= 3.10 (maybe 3.7 is enough) 
   * A Corsair keyboard
 
