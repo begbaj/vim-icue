@@ -10,6 +10,7 @@ automatically as you pass from **Insert** to **Normal** to **Command** mode.
 
 ## WARNING!
 **ARCHIVE**: I'm not willing to continue the development of this project anymore since I'm fully switched to linux since the release of this plugin. I'm therefore archiving this project.
+
 **UPDATE**: I'm currently working on a new project that uses OpenRGB instead of iCUE for better integration. I will make the repo public as soon as a working version is available.
 
 At the moment, I'm testing Vim-iCUE on my own keyboard which is a [Corsair Strafe](https://www.corsair.com/eu/en/Categories/Products/Gaming-Keyboards/Standard-Gaming-Keyboards/STRAFE-Mechanical-Gaming-Keyboard-%E2%80%94-CHERRY%C2%AE-MX-Silent/p/CH-9104023-NA) and only supports red color.
